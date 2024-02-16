@@ -11,16 +11,50 @@ generator client {
 model Job {
     id                            Int               @id @default(autoincrement())
     jobTitle                      String
-    logoUrl                       String
+    logoUrl                       String?
     jobLink                       String
-    companyName                   String
-    jobDescription                String
-    jobPostDate                   DateTime
-    jobAddedDate                  DateTime
+    companyName                   String?
+    jobDescription                String?
+    jobPostDate                   DateTime?
+    jobAddedDate                  DateTime?         @default(now())
     numberOfDetailedClicks        Int
     numberOfTimesJobLinkIsClicked Int
     technologies                  JobTechnologies[]
     applications                  Application[]
+    Location                      Location?         @relation(fields: [locationId], references: [id])
+    locationId                    Int?
+}
+
+model Country {
+    id          Int        @id @default(autoincrement())
+    countryName String
+    countryIcon String?
+    Location    Location[]
+}
+
+model Continent {
+    id            Int    @id @default(autoincrement())
+    continentName String
+
+    Location Location[]
+}
+
+model City {
+    id       Int    @id @default(autoincrement())
+    cityName String
+
+    Location Location[]
+}
+
+model Location {
+    id          Int        @id @default(autoincrement())
+    cityId      Int?
+    City        City?      @relation(fields: [cityId], references: [id])
+    countryId   Int?
+    Country     Country?   @relation(fields: [countryId], references: [id])
+    continentId Int?
+    Continent   Continent? @relation(fields: [continentId], references: [id])
+    job         Job[]
 }
 
 model User {

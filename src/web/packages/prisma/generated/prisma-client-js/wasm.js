@@ -117,7 +117,31 @@ exports.Prisma.JobScalarFieldEnum = {
   jobPostDate: 'jobPostDate',
   jobAddedDate: 'jobAddedDate',
   numberOfDetailedClicks: 'numberOfDetailedClicks',
-  numberOfTimesJobLinkIsClicked: 'numberOfTimesJobLinkIsClicked'
+  numberOfTimesJobLinkIsClicked: 'numberOfTimesJobLinkIsClicked',
+  locationId: 'locationId'
+};
+
+exports.Prisma.CountryScalarFieldEnum = {
+  id: 'id',
+  countryName: 'countryName',
+  countryIcon: 'countryIcon'
+};
+
+exports.Prisma.ContinentScalarFieldEnum = {
+  id: 'id',
+  continentName: 'continentName'
+};
+
+exports.Prisma.CityScalarFieldEnum = {
+  id: 'id',
+  cityName: 'cityName'
+};
+
+exports.Prisma.LocationScalarFieldEnum = {
+  id: 'id',
+  cityId: 'cityId',
+  countryId: 'countryId',
+  continentId: 'continentId'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -182,6 +206,10 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Job: 'Job',
+  Country: 'Country',
+  Continent: 'Continent',
+  City: 'City',
+  Location: 'Location',
   User: 'User',
   Role: 'Role',
   UserStatistics: 'UserStatistics',
