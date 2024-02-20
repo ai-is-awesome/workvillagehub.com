@@ -14,7 +14,6 @@ type PaginationProps = {
 };
 
 const PaginationButton: React.FC<PaginationButtonProps> = (props) => {
-  console.log("pag props: ", props);
   const classes = classNames(
     props.isSelected
       ? "rounded-[100px] px-3 py-1 bg-gray-400 border-gray-400 border-solid border-2"
