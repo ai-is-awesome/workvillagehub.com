@@ -21,16 +21,18 @@ const JobCard = ({
           <p className="text-gray-600 text-sm">{company}</p>
           <p className="text-gray-600 text-sm">{locationString}</p>
         </div>
-        <div className="flex gap-2">
-          {technologies.map((tech) => (
-            <p
-              className="text-gray-600 hover:bg-gray-100 bg-white px-2 py-1 rounded-full text-sm "
-              key={tech}
-            >
-              {tech}
-            </p>
-          ))}
-        </div>
+        {technologies && (
+          <div className="flex gap-2">
+            {technologies.map((tech) => (
+              <p
+                className="text-gray-600 hover:bg-gray-100 bg-white px-2 py-1 rounded-full text-sm "
+                key={tech}
+              >
+                {tech}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

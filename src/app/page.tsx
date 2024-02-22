@@ -6,66 +6,23 @@ import Pagination from "@/web/packages/ui/pagination";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import createSupabaseClient from "./lib/supabase/supabaseClient";
+import useAuth from "./lib/hooks/useAuth";
+import { mockJobData } from "./lib/utils/mockData";
+import axios from "axios";
+import { Job } from "@/web/packages/prisma/generated/prisma-client-js";
+import useRequest from "./lib/hooks/useRequest";
 
 export default function Home() {
   const [page, setPage] = useState(1);
-  const jobData = [
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
 
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
-    {
-      jobTitle: "Full Stack Developer",
-      company: "Google",
-      locationString: "Bangalore",
-      technologies: ["React", "Node", "MongoDb"],
-    },
-  ];
+  const userData = useAuth();
+
+  const jobData = mockJobData;
+  const url = "/api/jobs/getLatestJobs";
+  const { fetchData, isLoading, data } = useRequest({
+    url: url,
+    method: "post",
+  });
 
   const paginationData = {
     totalPages: 10,
@@ -73,24 +30,27 @@ export default function Home() {
     onChange: (p) => setPage(p),
   };
 
-  const supabase = createSupabaseClient();
-
   useEffect(() => {
-    const user = supabase.auth.getUser().then((user) => {
-      console.log("resp : ", user);
-    });
+    fetchData();
   }, []);
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
-      {/* <Jobcard {...jobData[0]} /> */}
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
 
-      <JobCardList>
-        {jobData.map((data) => (
-          <Jobcard key={data.jobTitle} {...data} />
-        ))}
-      </JobCardList>
-      <Pagination {...paginationData} />
-    </main>
-  );
+  if (data) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
+        {/* <Jobcard {...jobData[0]} /> */}
+
+        <div>{userData.isLoggedIn && userData.userResponseObject?.email}</div>
+        <JobCardList>
+          {data.map((data) => (
+            <Jobcard key={data.jobTitle} {...data} />
+          ))}
+        </JobCardList>
+        <Pagination {...paginationData} />
+      </main>
+    );
+  }
 }

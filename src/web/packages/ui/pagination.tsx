@@ -13,9 +13,12 @@ type PaginationProps = {
   onChange: (page: number) => void;
 };
 
-const PaginationButton: React.FC<PaginationButtonProps> = (props) => {
+const PaginationButton: React.FC<PaginationButtonProps> = ({
+  isSelected,
+  ...props
+}) => {
   const classes = classNames(
-    props.isSelected
+    isSelected
       ? "rounded-[100px] px-3 py-1 bg-gray-400 border-gray-400 border-solid border-2"
       : "rounded-[100px] px-3 py-1 bg-gray-200"
   );
@@ -63,18 +66,22 @@ const Pagination: React.FC<PaginationProps> = (props) => {
           </PaginationButton>
         )}
 
+      {props.currentPage !== props.totalPages &&
+        props.currentPage + 1 !== props.totalPages - 1 && (
+          <>
+            {props.currentPage !== props.totalPages - 1 && (
+              <div className="mx-4">....</div>
+            )}
+          </>
+        )}
+
       {props.currentPage !== props.totalPages && (
-        <>
-          {props.currentPage !== props.totalPages - 1 && (
-            <div className="mx-4">....</div>
-          )}
-          <PaginationButton
-            isSelected={false}
-            onClick={() => props.onChange(props.totalPages)}
-          >
-            {props.totalPages}
-          </PaginationButton>
-        </>
+        <PaginationButton
+          isSelected={false}
+          onClick={() => props.onChange(props.totalPages)}
+        >
+          {props.totalPages}
+        </PaginationButton>
       )}
     </div>
   );

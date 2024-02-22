@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react";
 import createSupabaseClient from "../lib/supabase/supabaseClient";
 import { useRouter } from "next/navigation";
+import useAuth from "../lib/hooks/useAuth";
 
 const Page = () => {
   const [loading, setLoading] = useState(true);
+
+  const useAuthData = useAuth();
 
   const router = useRouter();
   useEffect(() => {

@@ -1,0 +1,65 @@
+import { User } from "@supabase/supabase-js";
+import createSupabaseClient from "../supabase/supabaseClient";
+import { useEffect, useReducer, useState } from "react";
+
+interface useAuthProps {}
+
+interface userAuthLoadingState {
+  isLoggedIn: boolean;
+
+  status: "loading";
+  error: any;
+  userResponseObject: null;
+}
+
+interface userAuthErrorState {
+  isLoggedIn: boolean;
+
+  status: "error";
+  error: any;
+  userResponseObject: null;
+}
+
+interface userAuthSuccessState {
+  isLoggedIn: boolean;
+
+  status: "success";
+  error: null;
+  userResponseObject: User;
+}
+
+type useAuthState =
+  | userAuthLoadingState
+  | userAuthErrorState
+  | userAuthSuccessState;
+
+const useAuth = (): useAuthState => {
+  const initialState: useAuthState = {
+    isLoggedIn: false,
+
+    status: "loading",
+    error: {},
+    userResponseObject: null,
+  };
+  const [userState, setUserState] = useState<useAuthState>(initialState);
+
+  const supabase = createSupabaseClient();
+
+  useEffect(() => {
+    supabase.auth.getUser().then((r) => {
+      const userData = r.data.user;
+      if (userData) {
+        setUserState({
+          isLoggedIn: true,
+          userResponseObject: userData,
+          status: "success",
+          error: null,
+        });
+      }
+    });
+  }, []);
+
+  return userState;
+};
+
+export default useAuth;
