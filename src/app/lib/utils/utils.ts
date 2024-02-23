@@ -7,3 +7,14 @@ export async function getRequestBody(request: Request) {
     // return Response.json({ error: "" }, { status: 400 });
   }
 }
+
+export const getDateString = (date: string): string => {
+  const dateObject = new Date(date);
+  // const options = { day: "numeric", month: "long", year: "2-digit" };
+  const dateString = dateObject.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "2-digit",
+  });
+  return dateString;
+};

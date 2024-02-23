@@ -11,6 +11,7 @@ import { mockJobData } from "./lib/utils/mockData";
 import axios from "axios";
 import { Job } from "@/web/packages/prisma/generated/prisma-client-js";
 import useRequest from "./lib/hooks/useRequest";
+import { transformApiJobs } from "./lib/utils/transform";
 
 export default function Home() {
   const [page, setPage] = useState(1);
@@ -39,13 +40,14 @@ export default function Home() {
   }
 
   if (data) {
+    const transformedData = data.map((job) => transformApiJobs(job));
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
         {/* <Jobcard {...jobData[0]} /> */}
 
         <div>{userData.isLoggedIn && userData.userResponseObject?.email}</div>
         <JobCardList>
-          {data.map((data) => (
+          {jobData.map((data: Job) => (
             <Jobcard key={data.jobTitle} {...data} />
           ))}
         </JobCardList>

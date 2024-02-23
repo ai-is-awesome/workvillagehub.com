@@ -4,6 +4,8 @@ export async function POST(request: Request) {
   console.log("Role");
   const body = await request.json();
 
+//   Logic check for admin
+
   const record = await prisma.role.findFirst({
     where: { roleName: body.roleName },
   });

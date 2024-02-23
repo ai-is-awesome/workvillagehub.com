@@ -13,7 +13,8 @@ model Job {
     jobTitle                      String
     logoUrl                       String?
     jobLink                       String
-    companyName                   String?
+    companyId                     Int
+    companyName                   Company           @relation(fields: [companyId], references: [id])
     jobDescription                String?
     jobPostDate                   DateTime?
     jobAddedDate                  DateTime?         @default(now())
@@ -23,6 +24,13 @@ model Job {
     applications                  Application[]
     Location                      Location?         @relation(fields: [locationId], references: [id])
     locationId                    Int?
+}
+
+model Company {
+    id             Int     @id @default(autoincrement())
+    companyLogoUrl String?
+    companyName    String
+    Job            Job[]
 }
 
 model Country {
@@ -109,6 +117,7 @@ model Technology {
     type            String? // Optional field for technology type
     jobTechnologies JobTechnologies[]
     User            User[]
+    iconUrl         String?
 }
 
 model JobTechnologies {

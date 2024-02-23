@@ -24,3 +24,10 @@ export interface User {
   created_at: string;
   updated_at: string;
 }
+
+export interface Job extends Record<string, any> {
+  jobTitle: string;
+  company: string;
+  locationString?: string;
+  technologies: string[];
+}

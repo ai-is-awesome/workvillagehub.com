@@ -55,3 +55,12 @@ export const mockJobData = [
     technologies: ["React", "Node", "MongoDb"],
   },
 ];
+
+export const databaseDump = {
+  location: {
+    createNew: [{}],
+  },
+  technologies: {
+    createNew: ["React JS", "Node JS", "MongoDB", "Express JS"],
+  },
+};

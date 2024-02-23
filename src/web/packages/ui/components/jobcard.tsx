@@ -1,18 +1,7 @@
+import { Job } from "@/app/lib/types/types";
 import React from "react";
 
-interface JobCardProps {
-  jobTitle: string;
-  company: string;
-  locationString: string;
-  technologies: string[];
-}
-
-const JobCard = ({
-  jobTitle,
-  company,
-  locationString,
-  technologies,
-}: JobCardProps) => {
+const JobCard = ({ jobTitle, company, locationString, technologies }: Job) => {
   return (
     <div className="bg-gray-100 hover:bg-slate-200 px-4 py-4 cursor-pointer min-w-[400px] rounded-sm">
       <div className="flex flex-col gap-2">

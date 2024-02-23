@@ -17,11 +17,11 @@ exports.$Enums = {}
 
 /**
  * Prisma Client JS version: 5.9.1
- * Query Engine version: 23fdc5965b1e05fc54e5f26ed3de66776b93de64
+ * Query Engine version: 5a9203d0590c951969e85a7d07215503f4672eb9
  */
 Prisma.prismaVersion = {
   client: "5.9.1",
-  engine: "23fdc5965b1e05fc54e5f26ed3de66776b93de64"
+  engine: "5a9203d0590c951969e85a7d07215503f4672eb9"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -112,13 +112,19 @@ exports.Prisma.JobScalarFieldEnum = {
   jobTitle: 'jobTitle',
   logoUrl: 'logoUrl',
   jobLink: 'jobLink',
-  companyName: 'companyName',
+  companyId: 'companyId',
   jobDescription: 'jobDescription',
   jobPostDate: 'jobPostDate',
   jobAddedDate: 'jobAddedDate',
   numberOfDetailedClicks: 'numberOfDetailedClicks',
   numberOfTimesJobLinkIsClicked: 'numberOfTimesJobLinkIsClicked',
   locationId: 'locationId'
+};
+
+exports.Prisma.CompanyScalarFieldEnum = {
+  id: 'id',
+  companyLogoUrl: 'companyLogoUrl',
+  companyName: 'companyName'
 };
 
 exports.Prisma.CountryScalarFieldEnum = {
@@ -146,6 +152,7 @@ exports.Prisma.LocationScalarFieldEnum = {
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
+  supabaseId: 'supabaseId',
   firstName: 'firstName',
   lastName: 'lastName',
   emailAddress: 'emailAddress',
@@ -180,7 +187,8 @@ exports.Prisma.ExperienceScalarFieldEnum = {
 exports.Prisma.TechnologyScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  type: 'type'
+  type: 'type',
+  iconUrl: 'iconUrl'
 };
 
 exports.Prisma.JobTechnologiesScalarFieldEnum = {
@@ -206,6 +214,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Job: 'Job',
+  Company: 'Company',
   Country: 'Country',
   Continent: 'Continent',
   City: 'City',
