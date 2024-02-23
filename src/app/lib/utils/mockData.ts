@@ -58,9 +58,12 @@ export const mockJobData = [
 
 export const databaseDump = {
   location: {
-    createNew: [{}],
+    createNew: [{ city: "New Delhi" }, { city: "Remote" }],
   },
   technologies: {
     createNew: ["React JS", "Node JS", "MongoDB", "Express JS"],
+  },
+  jobs: {
+    createNew: [{ jobTitle: "Software Engineer" }],
   },
 };

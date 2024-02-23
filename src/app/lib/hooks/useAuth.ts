@@ -33,7 +33,12 @@ type useAuthState =
   | userAuthErrorState
   | userAuthSuccessState;
 
-const useAuth = (): useAuthState => {
+type useAuthReturn = {
+  user: useAuthState;
+  signOut: () => void;
+};
+
+const useAuth = (): useAuthReturn => {
   const initialState: useAuthState = {
     isLoggedIn: false,
 
@@ -41,9 +46,14 @@ const useAuth = (): useAuthState => {
     error: {},
     userResponseObject: null,
   };
+
   const [userState, setUserState] = useState<useAuthState>(initialState);
 
   const supabase = createSupabaseClient();
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+  };
 
   useEffect(() => {
     supabase.auth.getUser().then((r) => {
@@ -59,7 +69,7 @@ const useAuth = (): useAuthState => {
     });
   }, []);
 
-  return userState;
+  return { user: userState, signOut };
 };
 
 export default useAuth;

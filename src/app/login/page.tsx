@@ -13,8 +13,14 @@ const Page = () => {
   const router = useRouter();
   useEffect(() => {
     const supabase = createSupabaseClient();
+
     const user = supabase.auth.getUser().then((data) => {
+      if (data.error) {
+        setLoading(false);
+      }
+      console.log("Data : ", data);
       if (data.data.user) {
+        axios.post("/api/user/onboard");
         router.push("/");
       }
     });

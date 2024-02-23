@@ -8341,8 +8341,8 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName: string | null
+    lastName: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId: number | null
@@ -8421,8 +8421,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       supabaseId: string
-      firstName: string
-      lastName: string
+      firstName: string | null
+      lastName: string | null
       emailAddress: string
       isEmailVerified: boolean
       userStatisticsId: number | null
@@ -15501,8 +15501,8 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: IntFilter<"User"> | number
     supabaseId?: StringFilter<"User"> | string
-    firstName?: StringFilter<"User"> | string
-    lastName?: StringFilter<"User"> | string
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastName?: StringNullableFilter<"User"> | string | null
     emailAddress?: StringFilter<"User"> | string
     isEmailVerified?: BoolFilter<"User"> | boolean
     userStatisticsId?: IntNullableFilter<"User"> | number | null
@@ -15518,8 +15518,8 @@ export namespace Prisma {
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     supabaseId?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
+    firstName?: SortOrderInput | SortOrder
+    lastName?: SortOrderInput | SortOrder
     emailAddress?: SortOrder
     isEmailVerified?: SortOrder
     userStatisticsId?: SortOrderInput | SortOrder
@@ -15538,8 +15538,8 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     supabaseId?: StringFilter<"User"> | string
-    firstName?: StringFilter<"User"> | string
-    lastName?: StringFilter<"User"> | string
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastName?: StringNullableFilter<"User"> | string | null
     emailAddress?: StringFilter<"User"> | string
     isEmailVerified?: BoolFilter<"User"> | boolean
     userStatisticsId?: IntNullableFilter<"User"> | number | null
@@ -15555,8 +15555,8 @@ export namespace Prisma {
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     supabaseId?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
+    firstName?: SortOrderInput | SortOrder
+    lastName?: SortOrderInput | SortOrder
     emailAddress?: SortOrder
     isEmailVerified?: SortOrder
     userStatisticsId?: SortOrderInput | SortOrder
@@ -15575,8 +15575,8 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"User"> | number
     supabaseId?: StringWithAggregatesFilter<"User"> | string
-    firstName?: StringWithAggregatesFilter<"User"> | string
-    lastName?: StringWithAggregatesFilter<"User"> | string
+    firstName?: StringNullableWithAggregatesFilter<"User"> | string | null
+    lastName?: StringNullableWithAggregatesFilter<"User"> | string | null
     emailAddress?: StringWithAggregatesFilter<"User"> | string
     isEmailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     userStatisticsId?: IntNullableWithAggregatesFilter<"User"> | number | null
@@ -16176,8 +16176,8 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatistics?: UserStatisticsCreateNestedOneWithoutUserInput
@@ -16190,8 +16190,8 @@ export namespace Prisma {
   export type UserUncheckedCreateInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId?: number | null
@@ -16203,8 +16203,8 @@ export namespace Prisma {
 
   export type UserUpdateInput = {
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatistics?: UserStatisticsUpdateOneWithoutUserNestedInput
@@ -16217,8 +16217,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatisticsId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -16231,8 +16231,8 @@ export namespace Prisma {
   export type UserCreateManyInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId?: number | null
@@ -16242,8 +16242,8 @@ export namespace Prisma {
 
   export type UserUpdateManyMutationInput = {
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -16251,8 +16251,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatisticsId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -18840,8 +18840,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutRoleInput = {
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatistics?: UserStatisticsCreateNestedOneWithoutUserInput
@@ -18853,8 +18853,8 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutRoleInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId?: number | null
@@ -18895,8 +18895,8 @@ export namespace Prisma {
     NOT?: UserScalarWhereInput | UserScalarWhereInput[]
     id?: IntFilter<"User"> | number
     supabaseId?: StringFilter<"User"> | string
-    firstName?: StringFilter<"User"> | string
-    lastName?: StringFilter<"User"> | string
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastName?: StringNullableFilter<"User"> | string | null
     emailAddress?: StringFilter<"User"> | string
     isEmailVerified?: BoolFilter<"User"> | boolean
     userStatisticsId?: IntNullableFilter<"User"> | number | null
@@ -18906,8 +18906,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutUserStatisticsInput = {
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     technologyPreferences?: TechnologyCreateNestedOneWithoutUserInput
@@ -18919,8 +18919,8 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutUserStatisticsInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     technologyId?: number | null
@@ -18957,8 +18957,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutApplicationsInput = {
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatistics?: UserStatisticsCreateNestedOneWithoutUserInput
@@ -18970,8 +18970,8 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutApplicationsInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId?: number | null
@@ -19032,8 +19032,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutApplicationsInput = {
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatistics?: UserStatisticsUpdateOneWithoutUserNestedInput
@@ -19045,8 +19045,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutApplicationsInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatisticsId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -19097,8 +19097,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutProfessionalExperienceInput = {
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatistics?: UserStatisticsCreateNestedOneWithoutUserInput
@@ -19110,8 +19110,8 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutProfessionalExperienceInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId?: number | null
@@ -19138,8 +19138,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutProfessionalExperienceInput = {
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatistics?: UserStatisticsUpdateOneWithoutUserNestedInput
@@ -19151,8 +19151,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutProfessionalExperienceInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatisticsId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -19181,8 +19181,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutTechnologyPreferencesInput = {
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatistics?: UserStatisticsCreateNestedOneWithoutUserInput
@@ -19194,8 +19194,8 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutTechnologyPreferencesInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId?: number | null
@@ -19602,8 +19602,8 @@ export namespace Prisma {
   export type UserCreateManyRoleInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId?: number | null
@@ -19612,8 +19612,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutRoleInput = {
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatistics?: UserStatisticsUpdateOneWithoutUserNestedInput
@@ -19625,8 +19625,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutRoleInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatisticsId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -19638,8 +19638,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyWithoutRoleInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatisticsId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -19649,8 +19649,8 @@ export namespace Prisma {
   export type UserCreateManyUserStatisticsInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     technologyId?: number | null
@@ -19659,8 +19659,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutUserStatisticsInput = {
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     technologyPreferences?: TechnologyUpdateOneWithoutUserNestedInput
@@ -19672,8 +19672,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutUserStatisticsInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     technologyId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -19685,8 +19685,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyWithoutUserStatisticsInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     technologyId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -19700,8 +19700,8 @@ export namespace Prisma {
   export type UserCreateManyTechnologyPreferencesInput = {
     id?: number
     supabaseId: string
-    firstName: string
-    lastName: string
+    firstName?: string | null
+    lastName?: string | null
     emailAddress: string
     isEmailVerified: boolean
     userStatisticsId?: number | null
@@ -19722,8 +19722,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutTechnologyPreferencesInput = {
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatistics?: UserStatisticsUpdateOneWithoutUserNestedInput
@@ -19735,8 +19735,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutTechnologyPreferencesInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatisticsId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -19748,8 +19748,8 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyWithoutTechnologyPreferencesInput = {
     id?: IntFieldUpdateOperationsInput | number
     supabaseId?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     emailAddress?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     userStatisticsId?: NullableIntFieldUpdateOperationsInput | number | null

@@ -68,8 +68,8 @@ model Location {
 model User {
     id                     Int             @id @default(autoincrement())
     supabaseId             String
-    firstName              String
-    lastName               String
+    firstName              String?
+    lastName               String?
     emailAddress           String
     isEmailVerified        Boolean
     userStatisticsId       Int?

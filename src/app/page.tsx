@@ -16,7 +16,7 @@ import { transformApiJobs } from "./lib/utils/transform";
 export default function Home() {
   const [page, setPage] = useState(1);
 
-  const userData = useAuth();
+  const { user, signOut } = useAuth();
 
   const jobData = mockJobData;
   const url = "/api/jobs/getLatestJobs";
@@ -45,7 +45,18 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
         {/* <Jobcard {...jobData[0]} /> */}
 
-        <div>{userData.isLoggedIn && userData.userResponseObject?.email}</div>
+        {user.isLoggedIn && (
+          <>
+            <div> {user.userResponseObject?.email}</div>
+            <button
+              className="bg-red-500 text-white px-2 py-2 rounded-md"
+              onClick={() => signOut()}
+            >
+              Logout
+            </button>
+          </>
+        )}
+
         <JobCardList>
           {jobData.map((data: Job) => (
             <Jobcard key={data.jobTitle} {...data} />
