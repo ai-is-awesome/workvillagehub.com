@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import createSupabaseClient from "../lib/supabase/supabaseClient";
 import { useRouter } from "next/navigation";
 import useAuth from "../lib/hooks/useAuth";
+import axios from "axios";
 
 const Page = () => {
   const [loading, setLoading] = useState(true);
@@ -20,8 +21,12 @@ const Page = () => {
       }
       console.log("Data : ", data);
       if (data.data.user) {
-        axios.post("/api/user/onboard");
-        router.push("/");
+        axios
+          .post("/api/user/onboardUser")
+          .then((res) => {
+            router.push("/");
+          })
+          .catch((e) => {});
       }
     });
   }, [router]);
