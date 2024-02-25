@@ -4,12 +4,14 @@ export const mockJobData = [
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 1,
   },
   {
     jobTitle: "Full Stack Developer",
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 2,
   },
 
   {
@@ -17,42 +19,49 @@ export const mockJobData = [
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 3,
   },
   {
     jobTitle: "Full Stack Developer",
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 4,
   },
   {
     jobTitle: "Full Stack Developer",
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 5,
   },
   {
     jobTitle: "Full Stack Developer",
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 6,
   },
   {
     jobTitle: "Full Stack Developer",
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 7,
   },
   {
     jobTitle: "Full Stack Developer",
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 8,
   },
   {
     jobTitle: "Full Stack Developer",
     company: "Google",
     locationString: "Bangalore",
     technologies: ["React", "Node", "MongoDb"],
+    id: 9,
   },
 ];
 

@@ -1,9 +1,13 @@
 import React from "react";
 import getCurrentUser from "../lib/serverqueries/getCurrentUser";
+import { Button } from "../lib/ui/Button";
+import CreateJob from "../lib/ui/components/job/createJob";
+import { AdminSelectUI } from "../lib/ui/components/admin/AdminSelectUI";
 
 const Page: React.FunctionComponent = async () => {
   // async component
   const resp = await getCurrentUser();
+
   if (resp.error) {
     return <div>Whoops, get off this private land!</div>;
   }
@@ -19,6 +23,15 @@ const Page: React.FunctionComponent = async () => {
       </div>
     );
   }
+
+  let selectedComponent = <CreateJob />;
+  return (
+    <div className=" w-1/2 mx-auto py-20">
+      <h1 className="text-xl font-bold">Welcome to admin page!</h1>
+
+      <AdminSelectUI />
+    </div>
+  );
 };
 
 export default Page;

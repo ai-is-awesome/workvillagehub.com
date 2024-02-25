@@ -9,28 +9,26 @@ import axios from "axios";
 const Page = () => {
   const [loading, setLoading] = useState(true);
 
-  const useAuthData = useAuth();
-
   const router = useRouter();
   useEffect(() => {
+    console.log("checking for auth");
     const supabase = createSupabaseClient();
+    const fetchSession = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      return { data, error };
+    };
 
-    const user = supabase.auth.getUser().then((data) => {
-      if (data.error) {
+    fetchSession().then(({ data, error }) => {
+      if (data.session) {
+        router.push("/");
+      } else {
         setLoading(false);
-      }
-      console.log("Data : ", data);
-      if (data.data.user) {
-        axios
-          .post("/api/user/onboardUser")
-          .then((res) => {
-            router.push("/");
-          })
-          .catch((e) => {});
       }
     });
   }, [router]);
+
   const handler = async () => {
+    console.log("handler");
     const supabase = createSupabaseClient();
     supabase.auth.signInWithOAuth({ provider: "google" });
 

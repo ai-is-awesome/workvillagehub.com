@@ -1,7 +1,7 @@
 "use client";
-import JobCardList from "@/web/packages/ui/components/jobCardList";
-import Jobcard from "@/web/packages/ui/components/jobcard";
-import Pagination from "@/web/packages/ui/pagination";
+import JobCardList from "@/app/lib/ui/components/jobCardList";
+import Jobcard from "@/app/lib/ui/components/jobcard";
+import Pagination from "@/app/lib/ui/pagination";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -9,14 +9,16 @@ import createSupabaseClient from "./lib/supabase/supabaseClient";
 import useAuth from "./lib/hooks/useAuth";
 import { mockJobData } from "./lib/utils/mockData";
 import axios from "axios";
-import { Job } from "@/web/packages/prisma/generated/prisma-client-js";
+import { Job } from "@/app/lib/prisma/generated/prisma-client-js";
 import useRequest from "./lib/hooks/useRequest";
 import { transformApiJobs } from "./lib/utils/transform";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Home() {
   const [page, setPage] = useState(1);
-
+  const searchParams = useSearchParams();
   const { user, signOut } = useAuth();
+  const router = useRouter();
 
   const jobData = mockJobData;
   const url = "/api/jobs/getLatestJobs";
@@ -33,6 +35,12 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
+    if (searchParams.get("code")) {
+      axios.post("/api/user/onboardUser").then((res) => {
+        console.log("Res: ", res);
+        router.push("/");
+      });
+    }
   }, []);
 
   if (isLoading) {
@@ -59,7 +67,7 @@ export default function Home() {
 
         <JobCardList>
           {jobData.map((data: Job) => (
-            <Jobcard key={data.jobTitle} {...data} />
+            <Jobcard key={data.id} {...data} />
           ))}
         </JobCardList>
         <Pagination {...paginationData} />
