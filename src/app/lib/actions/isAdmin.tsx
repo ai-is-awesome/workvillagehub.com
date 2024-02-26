@@ -2,11 +2,12 @@ import getCurrentUser from "./getCurrentUser";
 
 const isAdmin = async (): Promise<boolean> => {
   const resp = await getCurrentUser();
+  console.log("Resp from isadmin : ", resp, resp.data);
   if (resp.error) {
     return false;
   }
-  if (resp.data.user) {
-    if (resp.data.user.roleId === 1) {
+  if (resp.data.id) {
+    if (resp.data.roleId === 1) {
       return true;
     }
   }

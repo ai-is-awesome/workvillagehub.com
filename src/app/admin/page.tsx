@@ -1,5 +1,5 @@
 import React from "react";
-import getCurrentUser from "../lib/serverqueries/getCurrentUser";
+import getCurrentUser from "@/app/lib/actions/getCurrentUser";
 import { Button } from "../lib/ui/Button";
 import CreateJob from "../lib/ui/components/job/createJob";
 import { AdminSelectUI } from "../lib/ui/components/admin/AdminSelectUI";
@@ -9,7 +9,15 @@ const Page: React.FunctionComponent = async () => {
   const resp = await getCurrentUser();
 
   if (resp.error) {
-    return <div>Whoops, get off this private land!</div>;
+    return (
+      <div>
+        Whoops, You've wondered off!{" "}
+        <a href="/" className="text-blue-500 font-bold">
+          click here
+        </a>{" "}
+        to find your next dream job!
+      </div>
+    );
   }
   if (resp.data.roleId === 2) {
     return (

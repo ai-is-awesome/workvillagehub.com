@@ -5,12 +5,14 @@ interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
 }
 
 export const Button = (props: ButtonProps) => {
+  const { className, children, ...restOfTheProps } = props;
   return (
     <button
-      className={`px-2 py-2 bg-gray-300  ${props.className}`}
+      className={`px-2 py-2 bg-gray-300  ${className}`}
       style={{ width: "max-content" }}
+      {...restOfTheProps}
     >
-      {props.children}
+      {children}
     </button>
   );
 };

@@ -10,8 +10,7 @@ interface currentUserReturnType {
 const getCurrentUser = async (): Promise<currentUserReturnType> => {
   const supabase = createSupabaseServerClient(cookies());
   const resp = await supabase.auth.getUser();
-  const { data, error } = await supabase.auth.refreshSession();
-  console.log("data: ", data, "error: ", error);
+
   if (resp.data.user) {
     const prismaUser = await prisma.user.findFirst({
       where: { emailAddress: resp.data.user.email },
