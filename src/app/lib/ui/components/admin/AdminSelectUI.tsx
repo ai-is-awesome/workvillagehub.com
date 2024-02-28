@@ -8,6 +8,7 @@ import GetCompany from "./GetCompany";
 import { RenderDbSchema } from "./GetDbItem";
 import getCompanies from "@/app/lib/actions/getCompanies";
 import getTechnology from "@/app/lib/actions/getTechnology";
+import AddLocation from "./AddLocation";
 
 export const AdminSelectUI = () => {
   const [selectedMode, setSelectedMode] = React.useState("create/asset");
@@ -15,6 +16,7 @@ export const AdminSelectUI = () => {
     { state: "create/job", component: <CreateJob /> },
     { state: "create/company", component: <CreateCompany /> },
     { state: "get/company", component: <GetCompany /> },
+    { state: "create/location", component: <AddLocation /> },
     {
       state: "get/technology",
       component: <RenderDbSchema cb={getTechnology} />,
@@ -27,10 +29,10 @@ export const AdminSelectUI = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 ">
         <div className="border border-solid border-gray-300 px-8 py-8">
           <h1 className="text-center text-xl mb-4">Create</h1>
-          <div className="flex flex-row gap-4">
+          <div className="grid grid-cols-4 gap-4">
             <Button
               className="bg-gray-300"
               onClick={() => {
@@ -50,6 +52,15 @@ export const AdminSelectUI = () => {
             </Button>
             <Button className="bg-gray-300">Create a new Role</Button>
             <Button> Upload a new asset</Button>
+            <Button
+              className=""
+              onClick={() => {
+                setSelectedMode("create/location");
+              }}
+            >
+              {" "}
+              Add Location
+            </Button>
           </div>
         </div>
         <div className="border border-solid border-gray-300 px-8 py-8">

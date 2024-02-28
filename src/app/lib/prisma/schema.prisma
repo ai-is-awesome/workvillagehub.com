@@ -47,9 +47,8 @@ model Continent {
 }
 
 model City {
-    id       Int    @id @default(autoincrement())
+    id       Int        @id @default(autoincrement())
     cityName String
-
     Location Location[]
 }
 

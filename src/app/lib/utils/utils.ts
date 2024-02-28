@@ -18,3 +18,11 @@ export const getDateString = (date: string): string => {
   });
   return dateString;
 };
+
+export function removeUndefinedKeys(obj: Record<string, any>) {
+  const result = { ...obj };
+  Object.keys(result).forEach(
+    (key) => result[key] === undefined && delete result[key]
+  );
+  return result;
+}

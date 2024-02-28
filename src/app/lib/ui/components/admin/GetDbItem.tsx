@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-export const RenderDbSchema = ({ cb }) => {
+export const RenderDbSchema = ({ cb }: { cb: () => Promise<any> }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     cb().then((data) => {
@@ -14,11 +14,13 @@ export const RenderDbSchema = ({ cb }) => {
     columns = Object.keys(data[0]);
   }
   console.log("Columns : ", columns);
+
   if (columns !== null) {
+    const gridclassName = `grid grid-cols-${columns.length}`;
     return (
       <div>
         <p>The data item retrieved successfully</p>
-        <div className={`grid grid-cols-${columns.length}`}>
+        <div className={gridclassName}>
           {columns.map((column) => {
             return <div key={column}>{column}</div>;
           })}
