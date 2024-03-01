@@ -32,8 +32,12 @@ async function getLocation() {
   const result = await prisma.location.findMany({
     take: 10,
     orderBy: { id: "desc" },
+    include: {
+      City: true,
+      Country: true,
+      Continent: true,
+    },
   });
-
   return result;
 }
 

@@ -9,6 +9,15 @@ async function createCity(cityName: string) {
   if (!allowed) {
     console.log("No permissions");
   }
+  const exists = await prisma.city.findFirst({
+    where: { cityName: cityName },
+  });
+
+  if (exists) {
+    console.log("City name already exists");
+    return;
+  }
+
   const city = await prisma.city.create({
     data: {
       cityName: cityName,

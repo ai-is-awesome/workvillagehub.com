@@ -22,7 +22,38 @@ export const getDateString = (date: string): string => {
 export function removeUndefinedKeys(obj: Record<string, any>) {
   const result = { ...obj };
   Object.keys(result).forEach(
-    (key) => result[key] === undefined && delete result[key]
+    (key) =>
+      (result[key] === undefined ||
+        result[key] === "" ||
+        result[key] === null) &&
+      delete result[key]
   );
+  return result;
+}
+
+export function objectValuesToInt(obj) {
+  const result = {};
+  for (const key in obj) {
+    const intValue = parseInt(obj[key], 10);
+    if (!isNaN(intValue)) {
+      result[key] = intValue;
+    }
+  }
+  return result;
+}
+
+export function flattenObject(obj) {
+  const result = {};
+
+  for (const key in obj) {
+    if (typeof obj[key] === "object" && obj[key] !== null) {
+      for (const subKey in obj[key]) {
+        result[`${key}_${subKey}`] = obj[key][subKey];
+      }
+    } else {
+      result[key] = obj[key];
+    }
+  }
+
   return result;
 }

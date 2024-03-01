@@ -1,19 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Button } from "../../Button";
 import {
   createCity,
   createContinent,
   createCountry,
+  createLocation,
 } from "@/app/lib/actions/createLocation";
 import {
   getCity,
   getContinent,
   getCountry,
+  getLocation,
 } from "@/app/lib/actions/getLocation";
 import { RenderDbSchema } from "./GetDbItem";
 import CreateContinent from "./createContinent";
+import {
+  get_admin_location_buttons_1,
+  get_admin_location_buttons_2,
+} from "@/app/lib/data/admin-data";
+import { TextInputAdmin } from "../../TextInputAdmin";
+import { objectValuesToInt, removeUndefinedKeys } from "@/app/lib/utils/utils";
 
 const UploadSingleTextFieldToDb = ({
   textTitle,
@@ -54,6 +62,66 @@ const UploadSingleTextFieldToDb = ({
     </div>
   );
 };
+
+const CreateLocation = ({
+  action,
+}: {
+  action: (p1?: number, p2?: number, p3?: number) => Promise<any>;
+}) => {
+  const [data, setData] = useState({
+    cityId: "",
+    countryId: "",
+    continentId: "",
+  });
+
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(data);
+    const sanitized = removeUndefinedKeys(data);
+    const newObj = objectValuesToInt(sanitized);
+    action(newObj);
+  };
+
+  return (
+    <>
+      <div>
+        <p className="text-lg">Create Location</p>
+        <form
+          className="flex flex-col gap-4"
+          onSubmit={(e) => submitHandler(e)}
+        >
+          <TextInputAdmin
+            inputText="Enter city id"
+            value={data.cityId}
+            type="number"
+            onChange={(e) => {
+              setData({ ...data, cityId: e.target.value });
+            }}
+          />
+          <TextInputAdmin
+            inputText="Enter Country id"
+            value={data.countryId}
+            type="number"
+            onChange={(e) => {
+              setData({ ...data, countryId: e.target.value });
+            }}
+          />
+          <TextInputAdmin
+            inputText="Enter Continent id"
+            value={data.continentId}
+            type="number"
+            onChange={(e) => {
+              setData({ ...data, continentId: e.target.value });
+            }}
+          />
+
+          <Button type="submit">Submit</Button>
+        </form>
+      </div>
+    </>
+  );
+};
+
 const AddLocation = () => {
   interface stateProps {
     selectedMode: string;
@@ -86,9 +154,15 @@ const AddLocation = () => {
         />
       ),
     },
+
+    {
+      state: "create/location",
+      component: <CreateLocation action={createLocation} />,
+    },
     { state: "get/country", component: <RenderDbSchema cb={getCountry} /> },
     { state: "get/city", component: <RenderDbSchema cb={getCity} /> },
     { state: "get/continent", component: <RenderDbSchema cb={getContinent} /> },
+    { state: "get/location", component: <RenderDbSchema cb={getLocation} /> },
   ];
   const [state, setState] = useState<stateProps>({
     selectedMode: "create/city",
@@ -98,35 +172,8 @@ const AddLocation = () => {
     (obj) => obj.state === state.selectedMode
   );
 
-  const buttons = [
-    {
-      buttonText: "Add City",
-      action: () => setState({ selectedMode: "create/city" }),
-    },
-    {
-      buttonText: "Add Country",
-      action: () => setState({ selectedMode: "create/country" }),
-    },
-    {
-      buttonText: "Add Continent",
-      action: () => setState({ selectedMode: "create/continent" }),
-    },
-  ];
-
-  const buttons2 = [
-    {
-      buttonText: "Get City",
-      action: () => setState({ selectedMode: "get/city" }),
-    },
-    {
-      buttonText: "Get country",
-      action: () => setState({ selectedMode: "get/country" }),
-    },
-    {
-      buttonText: "Get Continent",
-      action: () => setState({ selectedMode: "get/continent" }),
-    },
-  ];
+  const buttons = get_admin_location_buttons_1(setState);
+  const buttons2 = get_admin_location_buttons_2(setState);
 
   return (
     <div className="min-h-screen">
