@@ -16,4 +16,12 @@ export const locationSchema = z.object({
   continentName: z.string().optional(),
 });
 
+export const jobQuerySchema = z.object({
+  page: z.number(),
+  limit: z.number(),
+  search: z.string().optional(),
+  location: locationSchema.optional(),
+  technologies: z.array(z.number()).optional(),
+});
+
 export type jobSchemaType = z.infer<typeof jobSchema>;

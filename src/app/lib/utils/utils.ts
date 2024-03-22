@@ -1,10 +1,22 @@
-export async function getRequestBody(request: Request) {
+type temp1 = {
+  data: Record<string, any>;
+  error: null;
+};
+
+type temp2 = {
+  data: null;
+  error: string;
+};
+type getRequestBodyReturn = temp1 | temp2;
+
+export async function getRequestBody(
+  request: Request
+): Promise<getRequestBodyReturn> {
   try {
     const body = await request.json();
-    return body;
+    return { data: body, error: null };
   } catch (e) {
-    return null;
-    // return Response.json({ error: "" }, { status: 400 });
+    return { data: null, error: "Invalid request body" };
   }
 }
 
@@ -56,4 +68,14 @@ export function flattenObject(obj) {
   }
 
   return result;
+}
+
+export function getIdFromString(id: string | number) {
+  if (typeof id === "string") {
+    return parseInt(id, 10);
+  } else if (typeof id === "number") {
+    return id;
+  } else {
+    throw new Error("Invalid id");
+  }
 }

@@ -1,5 +1,7 @@
 import { Job } from "@/app/lib/types/types";
 import React from "react";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaBuilding } from "react-icons/fa";
 
 const JobCard = ({
   jobTitle,
@@ -7,14 +9,21 @@ const JobCard = ({
   locationString,
   technologies,
   id,
+  addedOnPlatformDate,
 }: Job) => {
   return (
-    <div className="bg-gray-100 hover:bg-slate-200 px-4 py-4 cursor-pointer min-w-[400px] rounded-sm">
+    <div className="bg-gray-100 text-brandMain hover:bg-slate-200 px-4 py-4 cursor-pointer min-w-[400px] rounded-sm">
       <div className="flex flex-col gap-2">
         <p className="font-bold">{jobTitle}</p>
-        <div>
-          <p className="text-gray-600 text-sm">{company}</p>
-          <p className="text-gray-600 text-sm">{locationString}</p>
+        <div className="">
+          <div className="flex items-center gap-1 my-1">
+            <FaBuilding />
+            <p className="text-gray-600 text-sm font-semibold">{company}</p>
+          </div>
+          <p className="text-gray-600 text-sm flex items-center gap-1">
+            <FaLocationDot />
+            {locationString}
+          </p>
         </div>
         {technologies && (
           <div className="flex gap-2">
@@ -29,6 +38,7 @@ const JobCard = ({
           </div>
         )}
       </div>
+      <div>{addedOnPlatformDate}</div>
     </div>
   );
 };

@@ -9,23 +9,29 @@ import { RenderDbSchema } from "./GetDbItem";
 import getCompanies from "@/app/lib/actions/getCompanies";
 import getTechnology from "@/app/lib/actions/getTechnology";
 import AddLocation from "./AddLocation";
+import { AddJobDescription } from "./AddJobDescription";
 
 export const AdminSelectUI = () => {
   const [selectedMode, setSelectedMode] = React.useState("create/asset");
+
   const components = [
     { state: "create/job", component: <CreateJob /> },
     { state: "create/company", component: <CreateCompany /> },
     { state: "get/company", component: <GetCompany /> },
     { state: "create/location", component: <AddLocation /> },
+    { state: "create/jobDescription", component: <AddJobDescription /> },
     {
       state: "get/technology",
       component: <RenderDbSchema cb={getTechnology} />,
     },
   ];
 
-  const renderedComponent = components.find(
-    (obj) => obj.state === selectedMode
-  );
+  const renderedComponent = components.find((obj) => {
+    console.log("all objs: ", obj, "selected: ", selectedMode);
+    return obj.state === selectedMode;
+  });
+
+  console.log(renderedComponent, selectedMode);
 
   return (
     <>
@@ -60,6 +66,14 @@ export const AdminSelectUI = () => {
             >
               {" "}
               Add Location
+            </Button>
+            <Button
+              className="bg-gray-300"
+              onClick={() => {
+                setSelectedMode("create/jobDescription");
+              }}
+            >
+              Add Job Description
             </Button>
           </div>
         </div>

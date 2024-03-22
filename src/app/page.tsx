@@ -13,19 +13,22 @@ import { Job } from "@/app/lib/prisma/generated/prisma-client-js";
 import useRequest from "./lib/hooks/useRequest";
 import { transformApiJobs } from "./lib/utils/transform";
 import { useRouter, useSearchParams } from "next/navigation";
+import { getJobsByPagination } from "./lib/actions/Job";
+import useAsync from "./lib/hooks/useAsync";
+import { Layout } from "./lib/ui/Layout";
 
 export default function Home() {
   const [page, setPage] = useState(1);
   const searchParams = useSearchParams();
   const { user, signOut } = useAuth();
   const router = useRouter();
-
-  const jobData = mockJobData;
   const url = "/api/jobs/getLatestJobs";
-  const { fetchData, isLoading, data } = useRequest({
+  const { data, error, isLoading, fetchData } = useRequest({
     url: url,
     method: "post",
+    data: { page: 1, limit: 14 },
   });
+  const jobData = mockJobData;
 
   const paginationData = {
     totalPages: 10,
@@ -50,28 +53,32 @@ export default function Home() {
   if (data) {
     const transformedData = data.map((job) => transformApiJobs(job));
     return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
-        {/* <Jobcard {...jobData[0]} /> */}
+      <Layout>
+        <main className="mx-40 my-24">
+          {/* <Jobcard {...jobData[0]} /> */}
 
-        {user.isLoggedIn && (
-          <>
-            <div> {user.userResponseObject?.email}</div>
-            <button
-              className="bg-red-500 text-white px-2 py-2 rounded-md"
-              onClick={() => signOut()}
-            >
-              Logout
-            </button>
-          </>
-        )}
+          {user.isLoggedIn && (
+            <>
+              <div> {user.userResponseObject?.email}</div>
+              <button
+                className="bg-red-500 text-white px-2 py-2 rounded-md"
+                onClick={() => signOut()}
+              >
+                Logout
+              </button>
+            </>
+          )}
 
-        <JobCardList>
-          {jobData.map((data: Job) => (
-            <Jobcard key={data.id} {...data} />
-          ))}
-        </JobCardList>
-        <Pagination {...paginationData} />
-      </main>
+          <JobCardList>
+            {transformedData.map((data: Job) => (
+              <Jobcard key={data.id} {...data} />
+            ))}
+          </JobCardList>
+          <Pagination {...paginationData} />
+        </main>
+      </Layout>
     );
+  } else {
+    return <div className="text-black bg-green-700">Nothing Found here...</div>;
   }
 }

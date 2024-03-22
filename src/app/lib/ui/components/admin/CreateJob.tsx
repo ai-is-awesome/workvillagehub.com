@@ -2,6 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { Button } from "../../Button";
+import createJob from "@/app/lib/actions/Job";
+import { getIdFromString, removeUndefinedKeys } from "@/app/lib/utils/utils";
 
 interface CreateJobState {
   jobTitle: string;
@@ -21,6 +23,23 @@ const CreateJob = () => {
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
+    const obj = removeUndefinedKeys({
+      jobTitle: state.jobTitle,
+      companyId: getIdFromString(state.companyId),
+      jobLink: state.jobUrl,
+      technologiesId: state.technologiesId
+        ? transformTechnologiesId(state.technologiesId)
+        : undefined,
+    });
+
+    createJob(obj).then((res) => console.log(res));
+  };
+
+  const transformTechnologiesId = (technologies: string) => {
+    return technologies
+      .replace(" ", "")
+      .split(",")
+      .map((tech) => getIdFromString(tech));
   };
 
   return (

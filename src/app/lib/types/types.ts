@@ -29,5 +29,6 @@ export interface Job extends Record<string, any> {
   jobTitle: string;
   company: string;
   locationString?: string;
-  technologies: string[];
+  technologies?: string[];
+  addedOnPlatformDate: string;
 }

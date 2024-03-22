@@ -1,3 +1,6 @@
+import { getJobsByPagination } from "../actions/Job";
+import prisma from "@/app/lib/prisma/prisma";
+
 export const mockJobData = [
   {
     jobTitle: "Full Stack Developer",
@@ -75,4 +78,29 @@ export const databaseDump = {
   jobs: {
     createNew: [{ jobTitle: "Software Engineer" }],
   },
+};
+
+export const createDuplicates = async () => {
+  // const result = await prisma.job.findUnique({ where: { id: 5 } });
+  // let count = 0;
+  // if (result === null) {
+  //   return "";
+  // }
+  // while (count < 200) {
+  //   console.log("Count is : ", count);
+  //   await prisma.job.create({
+  //     data: {
+  //       jobTitle: result.jobTitle,
+  //       companyId: result.companyId,
+  //       jobDescription: result.jobDescription,
+  //       jobLink: result.jobLink,
+  //       jobPostDate: result.jobPostDate,
+  //       locationId: result.locationId,
+  //       numberOfDetailedClicks: 0,
+  //       numberOfTimesJobLinkIsClicked: 0,
+  //     },
+  //   });
+  //   count++;
+  // }
+  // return result;
 };

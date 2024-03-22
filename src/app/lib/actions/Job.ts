@@ -7,38 +7,77 @@ interface CreateJobPayload {
   companyId: number;
   jobDescription?: string;
   jobPostDate?: Date;
-  technologiesId: number[];
+  technologiesId?: number[];
   locationId?: number;
 }
-class Job {
-  async createJob(payload: CreateJobPayload) {
-    prisma.jobTechnologies.createMany({
-      data: [{ jobId: 1, technologyId: 1 }],
-    });
-    const job = await prisma.job.create({
-      data: {
-        jobTitle: payload.jobTitle,
-        jobLink: payload.jobLink,
-        jobDescription: payload.jobDescription,
-        jobPostDate: payload.jobPostDate,
-        company: {
-          connect: {
-            id: payload.companyId,
-          },
-        },
-        technologies: {
-          connectOrCreate: {
-            where: payload.technologiesId.map((id) => ({ id })),
-            create: payload.technologiesId.map((id) => ({ id })),
-          },
-        },
-        location: {
-          connect: {
-            id: payload.locationId,
-          },
-        },
-      },
-    });
-    return job;
-  }
+async function createJob(payload: CreateJobPayload) {
+  const job = await prisma.job.create({
+    data: {
+      jobTitle: payload.jobTitle,
+      jobLink: payload.jobLink,
+      jobDescription: payload.jobDescription,
+      jobPostDate: payload.jobPostDate,
+      companyId: payload.companyId,
+      numberOfDetailedClicks: 0,
+      numberOfTimesJobLinkIsClicked: 0,
+      locationId: payload.locationId,
+    },
+  });
+  console.log("Technologies", payload.technologiesId);
+  if (!payload.technologiesId) return job;
+
+  await prisma.jobTechnologies.createMany({
+    data: payload.technologiesId.map((techId) => ({
+      technologyId: techId,
+      jobId: job.id,
+    })),
+  });
+  return job;
 }
+
+export async function getJobsByPagination(
+  currentPage: number,
+  pageSize: number
+) {
+  const results = await prisma.job.findMany({
+    take: 10,
+    skip: (currentPage - 1) * pageSize,
+    select: {
+      id: true,
+      companyId: true,
+      companyName: true,
+      technologies: true,
+      jobTitle: true,
+      jobDescription: true,
+      jobLink: false,
+    },
+  });
+
+  return results;
+}
+
+// class Job {
+//   async createJob(payload: CreateJobPayload) {
+//     const job = await prisma.job.create({
+//       data: {
+//         jobTitle: payload.jobTitle,
+//         jobLink: payload.jobLink,
+//         jobDescription: payload.jobDescription,
+//         jobPostDate: payload.jobPostDate,
+//         companyId: payload.companyId,
+//         numberOfDetailedClicks: 0,
+//         numberOfTimesJobLinkIsClicked: 0,
+//         locationId: payload.locationId,
+//       },
+//     });
+//     await prisma.jobTechnologies.createMany({
+//       data: payload.technologiesId.map((techId) => ({
+//         technologyId: techId,
+//         jobId: job.id,
+//       })),
+//     });
+//     return job;
+//   }
+// }
+
+export default createJob;
