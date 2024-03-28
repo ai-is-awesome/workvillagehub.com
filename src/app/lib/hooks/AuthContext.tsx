@@ -1,12 +1,11 @@
 import { User } from "@supabase/supabase-js";
 import createSupabaseClient from "../supabase/supabaseClient";
-import { useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 interface useAuthProps {}
 
 interface userAuthLoadingState {
   isLoggedIn: boolean;
-
   status: "loading";
   error: any;
   userResponseObject: null;
@@ -22,10 +21,9 @@ interface userAuthErrorState {
 
 interface userAuthSuccessState {
   isLoggedIn: boolean;
-
   status: "success";
   error: null;
-  userResponseObject: User;
+  userResponseObject: User | null;
 }
 
 type useAuthState =
@@ -65,11 +63,24 @@ const useAuth = (): useAuthReturn => {
           status: "success",
           error: null,
         });
+      } else {
+        setUserState({
+          isLoggedIn: false,
+          status: "success",
+          error: null,
+          userResponseObject: null,
+        });
       }
     });
   }, []);
 
   return { user: userState, signOut };
+};
+
+const AuthContext = createContext<useAuthReturn | null>(null);
+export const AuthProvider: React.FC = ({ children }) => {
+  const auth = useAuth();
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
 
 export default useAuth;

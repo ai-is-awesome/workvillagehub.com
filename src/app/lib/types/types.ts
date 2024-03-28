@@ -26,6 +26,7 @@ export interface User {
 }
 
 export interface Job extends Record<string, any> {
+  id: number;
   jobTitle: string;
   company: string;
   locationString?: string;

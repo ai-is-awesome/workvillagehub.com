@@ -6,7 +6,7 @@ import Pagination from "@/app/lib/ui/pagination";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import createSupabaseClient from "./lib/supabase/supabaseClient";
-import useAuth from "./lib/hooks/useAuth";
+import useAuth from "./lib/hooks/AuthContext";
 import { mockJobData } from "./lib/utils/mockData";
 import axios from "axios";
 import { Job } from "@/app/lib/prisma/generated/prisma-client-js";
@@ -28,7 +28,6 @@ export default function Home() {
     method: "post",
     data: { page: 1, limit: 14 },
   });
-  const jobData = mockJobData;
 
   const paginationData = {
     totalPages: 10,
@@ -38,6 +37,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
+
     if (searchParams.get("code")) {
       axios.post("/api/user/onboardUser").then((res) => {
         console.log("Res: ", res);
@@ -46,7 +46,7 @@ export default function Home() {
     }
   }, []);
 
-  if (isLoading) {
+  if (isLoading || user.status === "loading") {
     return <div>Loading</div>;
   }
 

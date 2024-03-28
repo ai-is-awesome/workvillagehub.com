@@ -11,5 +11,6 @@ export const transformApiJobs = (job): Job => {
     locationString: "New Delhi, India",
     technologies: job.technologies.map((tech) => tech.technology.name),
     addedOnPlatformDate: getDateString(job.jobAddedDate),
+    id: job.id,
   };
 };

@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { Button } from "../../Button";
 import createJob from "@/app/lib/actions/Job";
 import { getIdFromString, removeUndefinedKeys } from "@/app/lib/utils/utils";
+import { AddJobDescription } from "./AddJobDescription";
 
 interface CreateJobState {
   jobTitle: string;
@@ -11,6 +12,7 @@ interface CreateJobState {
   companyId: string;
   technologiesId: string;
   locationId: string;
+  descriptionMarkdown: string;
 }
 const CreateJob = () => {
   const [state, setState] = useState<CreateJobState>({
@@ -19,6 +21,7 @@ const CreateJob = () => {
     companyId: "",
     technologiesId: "",
     locationId: "",
+    descriptionMarkdown: "",
   });
 
   const submitHandler = (e: FormEvent) => {
@@ -27,6 +30,7 @@ const CreateJob = () => {
       jobTitle: state.jobTitle,
       companyId: getIdFromString(state.companyId),
       jobLink: state.jobUrl,
+      jobDescription: state.descriptionMarkdown,
       technologiesId: state.technologiesId
         ? transformTechnologiesId(state.technologiesId)
         : undefined,
@@ -100,6 +104,15 @@ const CreateJob = () => {
               }}
               className="px-2 py-1 bg-gray-300 rounded-md"
               type="text"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label>Add Job Description</label>
+            <AddJobDescription
+              value={state.descriptionMarkdown}
+              onChange={(markdown) =>
+                setState({ ...state, descriptionMarkdown: markdown })
+              }
             />
           </div>
           <Button type="submit">Submit Job</Button>
