@@ -7,7 +7,11 @@ export const Sidebar = ({ className }: { className?: string }) => {
   const classes = clsx("flex-grow-1", "bg-gray-100 px-10 min-h-screen");
 
   return (
-    <div className={"min-w-[300px] bg-gray-100 px-10 min-h-screen"}>
+    <div
+      className={
+        "min-w-[300px] bg-gray-100 px-10 min-h-screen hidden lg:block "
+      }
+    >
       <div className="my-4">
         <a
           className="text-2xl  font-black text-brandMain cursor-pointer"

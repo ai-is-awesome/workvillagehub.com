@@ -16,6 +16,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getJobsByPagination } from "./lib/actions/Job";
 import useAsync from "./lib/hooks/useAsync";
 import { Layout } from "./lib/ui/Layout";
+import { ImageConfigContext } from "next/dist/shared/lib/image-config-context.shared-runtime";
+import profilePic from "../../public/icon-3.png";
+import { MobileTopBar } from "./lib/ui/components/MobileTopBar";
 
 export default function Home() {
   const [page, setPage] = useState(1);
@@ -54,10 +57,10 @@ export default function Home() {
     const transformedData = data.map((job) => transformApiJobs(job));
     return (
       <Layout>
-        <main className="mx-40 my-24">
+        <main className="lg:mx-40 lg:my-24">
           {/* <Jobcard {...jobData[0]} /> */}
-
-          {user.isLoggedIn && (
+          <MobileTopBar />
+          {/* {user.isLoggedIn && (
             <>
               <div> {user.userResponseObject?.email}</div>
               <button
@@ -67,8 +70,7 @@ export default function Home() {
                 Logout
               </button>
             </>
-          )}
-
+          )} */}
           <JobCardList>
             {transformedData.map((data: Job) => (
               <Jobcard key={data.id} {...data} />

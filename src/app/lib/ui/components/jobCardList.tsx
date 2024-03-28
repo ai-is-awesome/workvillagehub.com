@@ -7,7 +7,9 @@ type JobCardListInterface = {
 const JobCardList = ({ children }: JobCardListInterface) => {
   // Grid of 2 columns
   return (
-    <div className="grid-cols-2 grid gap-x-[2rem] gap-y-[1rem]">{children}</div>
+    <div className="lg:grid-cols-2 grid-cols-1 grid gap-x-[2rem] gap-y-[1rem]">
+      {children}
+    </div>
   );
 };
 
