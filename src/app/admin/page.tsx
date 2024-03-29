@@ -1,7 +1,7 @@
 import React from "react";
 import getCurrentUser from "@/app/lib/actions/getCurrentUser";
 import { Button } from "../lib/ui/Button";
-import CreateJob from "../lib/ui/components/job/createJob";
+import CreateJob from "../lib/ui/components/job/CreateJob";
 import { AdminSelectUI } from "../lib/ui/components/admin/AdminSelectUI";
 
 const Page: React.FunctionComponent = async () => {
