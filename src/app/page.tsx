@@ -4,7 +4,7 @@ import Jobcard from "@/app/lib/ui/components/jobcard";
 import Pagination from "@/app/lib/ui/pagination";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import createSupabaseClient from "./lib/supabase/supabaseClient";
 import useAuth from "./lib/hooks/AuthContext";
 import { mockJobData } from "./lib/utils/mockData";
@@ -20,7 +20,7 @@ import { ImageConfigContext } from "next/dist/shared/lib/image-config-context.sh
 import profilePic from "../../public/icon-3.png";
 import { MobileTopBar } from "./lib/ui/components/MobileTopBar";
 
-export default function Home() {
+function Home() {
   const [page, setPage] = useState(1);
   const searchParams = useSearchParams();
   const { user, signOut } = useAuth();
@@ -83,4 +83,12 @@ export default function Home() {
   } else {
     return <div className="text-black bg-green-700">Nothing Found here...</div>;
   }
+}
+
+export default function HomeWithSuspense() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Home />
+    </Suspense>
+  );
 }
