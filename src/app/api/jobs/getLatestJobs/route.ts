@@ -1,9 +1,11 @@
-import prisma from "@/app/lib/prisma/prisma";
 import { getRequestBody } from "@/app/lib/utils/utils";
 import { jobQuerySchema } from "@/app/lib/zod/zod";
+import prisma from "@/app/lib/prisma/prisma";
 
 export async function POST(request: Request, response: Response) {
+  // use `prisma` in your application to read and write data in your DB
   const { data: requestBody, error } = await getRequestBody(request);
+
   if (error) {
     return Response.json({ error }, { status: 400 });
   }
