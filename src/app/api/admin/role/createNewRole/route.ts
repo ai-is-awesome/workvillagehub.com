@@ -1,10 +1,10 @@
-import prisma from "@/web/packages/prisma/prisma";
+import prisma from "@/app/lib/prisma/prisma";
 
 export async function POST(request: Request) {
   console.log("Role");
   const body = await request.json();
 
-//   Logic check for admin
+  //   Logic check for admin
 
   const record = await prisma.role.findFirst({
     where: { roleName: body.roleName },
