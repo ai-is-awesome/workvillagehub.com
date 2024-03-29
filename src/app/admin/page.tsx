@@ -11,7 +11,7 @@ const Page: React.FunctionComponent = async () => {
   if (resp.error) {
     return (
       <div>
-        Whoops, You've wondered off!{" "}
+        Whoops, {"You've"} wondered off!{" "}
         <a href="/" className="text-blue-500 font-bold">
           click here
         </a>{" "}
