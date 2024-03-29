@@ -16,7 +16,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
   const markdownText = `Description
 -----------
   

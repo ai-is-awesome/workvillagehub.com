@@ -72,7 +72,7 @@ const useAuth = (): useAuthReturn => {
         });
       }
     });
-  }, []);
+  }, [supabase.auth]);
 
   return { user: userState, signOut };
 };

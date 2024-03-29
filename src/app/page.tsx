@@ -47,7 +47,7 @@ export default function Home() {
         router.push("/");
       });
     }
-  }, []);
+  }, [fetchData, searchParams, router]);
 
   if (isLoading || user.status === "loading") {
     return <div>Loading</div>;

@@ -3,7 +3,7 @@ import isAdmin from "../lib/actions/isAdmin";
 const Page: React.FunctionComponent = async () => {
   const admin = await isAdmin();
   if (!admin) {
-    return <div>Whoops, you're on the wrong page</div>;
+    return <div>Whoops, {"you're"} on the wrong page</div>;
   }
 
   return (

@@ -12,7 +12,7 @@ export const RenderDbSchema = ({ cb }: { cb: () => Promise<any> }) => {
 
       setData(validData);
     });
-  }, []);
+  }, [cb]);
   type column = null | string[];
   let columns: column = null;
   if (data.length > 0) {
