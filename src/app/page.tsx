@@ -60,7 +60,7 @@ function Home() {
         <main className="lg:mx-40 lg:my-24">
           {/* <Jobcard {...jobData[0]} /> */}
           <MobileTopBar />
-          {/* {user.isLoggedIn && (
+          {user.isLoggedIn && (
             <>
               <div> {user.userResponseObject?.email}</div>
               <button
@@ -70,7 +70,7 @@ function Home() {
                 Logout
               </button>
             </>
-          )} */}
+          )}
           <JobCardList>
             {transformedData.map((data: Job) => (
               <Jobcard key={data.id} {...data} />

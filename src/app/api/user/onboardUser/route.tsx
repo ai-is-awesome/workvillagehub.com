@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const supabaseObject = await supabase.auth.getUser();
 
   const user = supabaseObject.data.user;
-  const { data, error } = await supabase.auth.refreshSession();
+  // const { data, error } = await supabase.auth.refreshSession();
   console.log("data: ", data, "error: ", error);
 
   if (user && user.email) {
