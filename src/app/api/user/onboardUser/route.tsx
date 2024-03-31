@@ -1,14 +1,34 @@
 import prisma from "@/app/lib/prisma/prisma";
 import { cookies } from "next/headers";
 import { createSupabaseServerClient } from "@/app/lib/supabase/supabaseServerClient";
+import { getRequestBody } from "@/app/lib/utils/utils";
 
 export async function POST(request: Request) {
   const supabase = createSupabaseServerClient(cookies());
-  const supabaseObject = await supabase.auth.getUser();
-
-  const user = supabaseObject.data.user;
   // const { data, error } = await supabase.auth.refreshSession();
-  console.log("data: ", data, "error: ", error);
+  // console.log("data: ", data, "error: ", error);
+  const { data, error } = await supabase.auth.getUser();
+  console.log("1, ", data.user, error);
+  const user = data.user;
+
+  const bodyObj = await getRequestBody(request);
+  let code: string | null = null;
+  if (bodyObj.data) {
+    code = bodyObj.data.code;
+    const { data, error } = await supabase.auth.getUser();
+    console.log("2, ", "user id", data.user, error);
+  }
+  if (code) {
+    await supabase.auth.exchangeCodeForSession(code);
+  }
+
+  if (code) {
+    await supabase.auth.exchangeCodeForSession(code);
+    const { data, error } = await supabase.auth.getUser();
+    console.log("2, ", "user id", data.user.id, error);
+  } else {
+    console.log("Code never reached");
+  }
 
   if (user && user.email) {
     const supabaseId = user?.id;

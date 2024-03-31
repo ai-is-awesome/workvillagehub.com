@@ -40,12 +40,13 @@ function Home() {
 
   useEffect(() => {
     fetchData();
-
     if (searchParams.get("code")) {
-      axios.post("/api/user/onboardUser").then((res) => {
-        console.log("Res: ", res);
-        router.push("/");
-      });
+      axios
+        .get("/auth/callback", { code: searchParams.get("code") })
+        .then((res) => {
+          console.log("Res: ", res);
+          router.push("/");
+        });
     }
   }, []);
 
