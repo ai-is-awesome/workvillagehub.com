@@ -18,6 +18,7 @@ export async function POST(request: Request) {
       jobTitle: true,
       jobDescription: true,
       Location: true,
+      companyName: true,
     },
   });
   return Response.json({ job });

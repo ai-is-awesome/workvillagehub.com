@@ -2,6 +2,7 @@
 import useRequest from "@/app/lib/hooks/useRequest";
 import { Layout } from "@/app/lib/ui/Layout";
 import { Pill } from "@/app/lib/ui/Pill";
+import { Button } from "@/app/lib/ui/buttonShad";
 import MDEditor from "@uiw/react-md-editor";
 import { useEffect } from "react";
 import Markdown from "react-markdown";
@@ -12,11 +13,10 @@ export default function Page({ params }: { params: { slug: string } }) {
     method: "post",
     data: { jobId: parseInt(params.slug) },
   });
-  console.log("data is : ", data);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
   const markdownText = `Description
 -----------
   
@@ -41,23 +41,31 @@ export default function Page({ params }: { params: { slug: string } }) {
   -   Strong research and problem-solving skills
   -   Excellent communication (written, verbal) and teamwork skills`;
 
-  return (
-    <Layout>
-      <div className="mx-40 my-20">
-        {/* <div>Page: {params.slug}</div> */}
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
 
-        <h1 className="font-bold text-[2rem] tracking-tight">
-          Full Stack Developer
-        </h1>
-        <p className="font-bold text-[1.1rem]">Google</p>
-        <p className="mb-3  ">3,00,000 INR - 8,00,000 INR</p>
-        <div className="flex gap-2">
-          <Pill className={"bg-brandMain text-white"}>Java</Pill>
-          <Pill className={"bg-brandMain text-white"}>Java</Pill>
+  if (data) {
+    return (
+      <Layout>
+        <div className="lg:mx-40 lg:my-20 mx-4 mt-4">
+          {/* <div>Page: {params.slug}</div> */}
+          <h1 className="font-bold lg:text-[2rem] text-[1.5rem] tracking-tight">
+            {data.job.jobTitle}
+          </h1>
+          <p className="font-bold lg:text-[1.2rem]">
+            {data.job.companyName.companyName}
+          </p>
+          <p className="mb-3  ">3,00,000 INR - 8,00,000 INR</p>
+          <div className="flex gap-2 my-4">
+            <Pill className={"bg-brandMain text-white"}>Java</Pill>
+            <Pill className={"bg-brandMain text-white"}>Java</Pill>
+          </div>
+          <Button className="bg-brandMain">Apply Now</Button>
+          <div className="mb-8"></div>
+          {data && <MDEditor.Markdown source={data.job.jobDescription} />}
         </div>
-        <div className="mb-8"></div>
-        {data && <MDEditor.Markdown source={data.job.jobDescription} />}
-      </div>
-    </Layout>
-  );
+      </Layout>
+    );
+  }
 }

@@ -11,11 +11,10 @@ export function getEnvironmentVariables(): variables {
   if (env === "prod") {
     console.log("retuning prod env vars");
     return {
-      NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL_PROD!,
-      NEXT_PUBLIC_SUPABASE_ANON_KEY:
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_PROD!,
+      NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       env: process.env.env!,
-      DB_URL: process.env.PRISMA_DB_PROD_URL!,
+      DB_URL: process.env.PRISMA_DB_URL!,
     };
   } else {
     return {
