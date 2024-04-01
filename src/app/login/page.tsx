@@ -13,6 +13,7 @@ const Page = () => {
   useEffect(() => {
     console.log("checking for auth");
     const supabase = createSupabaseClient();
+    console.log("supabse is : ", supabase);
     const fetchSession = async () => {
       const { data, error } = await supabase.auth.getSession();
       return { data, error };
