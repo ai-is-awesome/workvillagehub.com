@@ -77,7 +77,8 @@ const useAuth = (): useAuthReturn => {
   return { user: userState, signOut };
 };
 
-const AuthContext = createContext<useAuthReturn | null>(null);
+export const AuthContext = createContext<useAuthReturn | null>(null);
+
 export const AuthProvider: React.FC = ({ children }) => {
   const auth = useAuth();
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;

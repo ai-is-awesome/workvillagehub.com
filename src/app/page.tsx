@@ -3,21 +3,15 @@ import JobCardList from "@/app/lib/ui/components/jobCardList";
 import Jobcard from "@/app/lib/ui/components/jobcard";
 import Pagination from "@/app/lib/ui/pagination";
 
-import Image from "next/image";
 import { useEffect, useState, Suspense } from "react";
-import createSupabaseClient from "./lib/supabase/supabaseClient";
 import useAuth from "./lib/hooks/AuthContext";
-import { mockJobData } from "./lib/utils/mockData";
 import axios from "axios";
 import { Job } from "@/app/lib/prisma/generated/prisma-client-js";
 import useRequest from "./lib/hooks/useRequest";
 import { transformApiJobs } from "./lib/utils/transform";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getJobsByPagination } from "./lib/actions/Job";
-import useAsync from "./lib/hooks/useAsync";
 import { Layout } from "./lib/ui/Layout";
-import { ImageConfigContext } from "next/dist/shared/lib/image-config-context.shared-runtime";
-import profilePic from "../../public/icon-3.png";
 import { MobileTopBar } from "./lib/ui/components/MobileTopBar";
 
 function Home() {
@@ -61,17 +55,6 @@ function Home() {
         <main className="lg:mx-40 lg:my-24">
           {/* <Jobcard {...jobData[0]} /> */}
           <MobileTopBar />
-          {user.isLoggedIn && (
-            <>
-              <div> {user.userResponseObject?.email}</div>
-              <button
-                className="bg-red-500 text-white px-2 py-2 rounded-md"
-                onClick={() => signOut()}
-              >
-                Logout
-              </button>
-            </>
-          )}
           <JobCardList>
             {transformedData.map((data: Job) => (
               <Jobcard key={data.id} {...data} />
