@@ -3,6 +3,7 @@ import useRequest from "@/app/lib/hooks/useRequest";
 import { Layout } from "@/app/lib/ui/Layout";
 import { Pill } from "@/app/lib/ui/Pill";
 import { Button } from "@/app/lib/ui/buttonShad";
+import { Loader } from "@/app/lib/ui/components/Loader";
 import MDEditor from "@uiw/react-md-editor";
 import { useEffect } from "react";
 import Markdown from "react-markdown";
@@ -42,7 +43,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   -   Excellent communication (written, verbal) and teamwork skills`;
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <Loader />;
   }
 
   if (data) {

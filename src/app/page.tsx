@@ -13,6 +13,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getJobsByPagination } from "./lib/actions/Job";
 import { Layout } from "./lib/ui/Layout";
 import { MobileTopBar } from "./lib/ui/components/MobileTopBar";
+import { Loader } from "./lib/ui/components/Loader";
 
 function Home() {
   const [page, setPage] = useState(1);
@@ -45,7 +46,7 @@ function Home() {
   }, []);
 
   if (isLoading || user.status === "loading") {
-    return <div>Loading</div>;
+    return <Loader />;
   }
 
   if (data) {
