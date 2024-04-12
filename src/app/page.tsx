@@ -14,6 +14,53 @@ import { getJobsByPagination } from "./lib/actions/Job";
 import { Layout } from "./lib/ui/Layout";
 import { MobileTopBar } from "./lib/ui/components/MobileTopBar";
 import { Loader } from "./lib/ui/components/Loader";
+import clsx from "clsx";
+import { cn } from "@/lib/utils";
+import { Button } from "./lib/ui/buttonShad";
+
+function LandingSection() {
+  return (
+    <div
+      className="py-20 text-white"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7) ), url('https://unsplash.com/photos/dIMJWLx1YbE/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8d29ya3xlbnwwfHx8fDE3MTI5MTk4NzB8MA&force=true&w=2400')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="lg:flex lg:items-center">
+        <div className="lg:w-1/2">
+          <h1 className="lg:text-5xl text-4xl font-bold text-center">
+            Get your Next Remote Job faster
+          </h1>
+        </div>
+        <div>
+          <p className="lg:w-[80%] w-[80%] mx-auto mt-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
+            officiis, mollitia dolor ipsum maiores aperiam praesentium amet
+            accusamus perspiciatis molestias.
+          </p>
+        </div>
+      </div>
+      <div className="px-20 py-4 ">
+        <div className="w-full flex flex-col items-center justify-center">
+          <input
+            type="text"
+            placeholder="Full Stack Engineer..."
+            className="text-black py-4 px-2 rounded-md lg:w-2/3 w-full tracking-wider font-semibold"
+          />
+          <Button className="my-4 bg-green-500">Search</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CenterHomeLayout(props) {
+  const classes = cn("lg:mx-40 lg:my-24", props.className);
+  return <div className={classes}>{props.children}</div>;
+}
 
 function Home() {
   const [page, setPage] = useState(1);
@@ -53,15 +100,22 @@ function Home() {
     const transformedData = data.map((job) => transformApiJobs(job));
     return (
       <Layout>
-        <main className="lg:mx-40 lg:my-24">
-          {/* <Jobcard {...jobData[0]} /> */}
-          <MobileTopBar />
-          <JobCardList>
-            {transformedData.map((data: Job) => (
-              <Jobcard key={data.id} {...data} />
-            ))}
-          </JobCardList>
-          <Pagination {...paginationData} />
+        <main>
+          <CenterHomeLayout className="lg:my-0">
+            {/* <Jobcard {...jobData[0]} /> */}
+            <MobileTopBar />
+          </CenterHomeLayout>
+          <div className="mb-12">
+            <LandingSection />
+          </div>
+          <CenterHomeLayout>
+            <JobCardList>
+              {transformedData.map((data: Job) => (
+                <Jobcard key={data.id} {...data} />
+              ))}
+            </JobCardList>
+            <Pagination {...paginationData} />
+          </CenterHomeLayout>
         </main>
       </Layout>
     );
