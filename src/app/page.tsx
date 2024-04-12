@@ -29,14 +29,14 @@ function LandingSection() {
         backgroundPosition: "center",
       }}
     >
-      <div className="lg:flex lg:items-center">
+      <div className="lg:flex lg:flex-col lg:items-center">
         <div className="lg:w-1/2">
           <h1 className="lg:text-5xl text-4xl font-bold text-center">
             Get your Next Remote Job faster
           </h1>
         </div>
         <div>
-          <p className="lg:w-[80%] w-[80%] mx-auto mt-4">
+          <p className="lg:w-[60%] w-[80%] mx-auto my-4">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
             officiis, mollitia dolor ipsum maiores aperiam praesentium amet
             accusamus perspiciatis molestias.
@@ -52,6 +52,7 @@ function LandingSection() {
           />
           <Button className="my-4 bg-green-500">Search</Button>
         </div>
+        <div className="w-[65%] mx-auto"></div>
       </div>
     </div>
   );
