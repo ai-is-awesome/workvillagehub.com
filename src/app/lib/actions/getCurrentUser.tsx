@@ -7,13 +7,16 @@ interface currentUserReturnType {
   error: string | null;
 }
 
-const getCurrentUser = async (): Promise<currentUserReturnType> => {
+const getCurrentUser = async (
+  selectObject = {}
+): Promise<currentUserReturnType> => {
   const supabase = createSupabaseServerClient(cookies());
   const resp = await supabase.auth.getUser();
 
   if (resp.data.user) {
     const prismaUser = await prisma.user.findFirst({
       where: { emailAddress: resp.data.user.email },
+      include: { Role: true },
     });
     return { data: prismaUser, error: null };
   } else {

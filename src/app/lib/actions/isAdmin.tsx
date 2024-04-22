@@ -7,7 +7,7 @@ const isAdmin = async (): Promise<boolean> => {
     return false;
   }
   if (resp.data.id) {
-    if (resp.data.roleName === "admin") {
+    if (resp.data.Role.roleName === "admin") {
       return true;
     }
   }

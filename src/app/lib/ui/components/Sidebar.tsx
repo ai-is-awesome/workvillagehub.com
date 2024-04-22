@@ -14,7 +14,9 @@ export const Sidebar = ({ className }: { className?: string }) => {
       <div className="">
         <p className="">Welcome, </p>
         <p className="font-bold">Piyush Lamba</p>
-        <Button className="bg-red-500 my-4">Log out</Button>
+        <Button className="bg-red-500 my-4" onClick={auth.signOut}>
+          Log out
+        </Button>
       </div>
     </div>
   );

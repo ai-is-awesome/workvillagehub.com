@@ -1,6 +1,12 @@
 import { User } from "@supabase/supabase-js";
 import createSupabaseClient from "../supabase/supabaseClient";
-import { createContext, useEffect, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 interface useAuthProps {}
 
