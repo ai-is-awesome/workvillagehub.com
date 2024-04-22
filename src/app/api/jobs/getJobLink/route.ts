@@ -1,6 +1,7 @@
 import { createSupabaseServerClient } from "@/app/lib/supabase/supabaseServerClient";
 import { getRequestBody } from "@/app/lib/utils/utils";
 import { cookies } from "next/headers";
+import prisma from "@/app/lib/prisma/prisma";
 
 export async function POST(request: Request) {
   const obj = await getRequestBody(request);
