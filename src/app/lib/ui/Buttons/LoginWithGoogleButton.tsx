@@ -28,7 +28,7 @@ export const LoginWithGoogleButton: React.FC<LoginWithGoogleButtonProps> = (
   };
 
   return (
-    <div className="flex items-center bg-white px-4">
+    <div className="flex items-center bg-white px-4 rounded-md">
       <FcGoogle className="text-4xl" />
       <button className=" w-full py-4 " onClick={handler}>
         <a className="font-semibold cursor-pointer">Continue with Google</a>

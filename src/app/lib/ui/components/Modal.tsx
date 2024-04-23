@@ -22,7 +22,7 @@ const Modal: React.FC<ModalProps> = (props) => {
           padding: "1em",
           zIndex: 1000,
         }}
-        className="shadow-lg bg-gray-100   left-1/2 p-4 w-1/3 min-h-[30%] rounded-md"
+        className="shadow-lg bg-gray-100 lg:left-1/2 p-4 lg:w-1/3 w-[90%] min-h-[30%] rounded-lg"
       >
         <button className="absolute right-[1rem]" onClick={props.onClose}>
           <IoIosCloseCircle fontSize={"1.5rem"} />
