@@ -37,9 +37,8 @@ function LandingSection() {
         </div>
         <div>
           <p className="lg:w-[60%] w-[80%] mx-auto my-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
-            officiis, mollitia dolor ipsum maiores aperiam praesentium amet
-            accusamus perspiciatis molestias.
+            Work Village Hub helps you get the best curated jobs from the top
+            companies in the world. Happy Job Hunting!
           </p>
         </div>
       </div>
