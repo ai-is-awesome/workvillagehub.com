@@ -2,6 +2,7 @@
 import { AuthContext } from "@/app/lib/hooks/AuthContext";
 import useRequest from "@/app/lib/hooks/useRequest";
 import { Layout } from "@/app/lib/ui/Layout";
+import { LoginWithGoogleModal } from "@/app/lib/ui/Modals/LoginWithGoogleModal";
 import { Pill } from "@/app/lib/ui/Pill";
 import { Button } from "@/app/lib/ui/buttonShad";
 import { Loader } from "@/app/lib/ui/components/Loader";
@@ -56,6 +57,12 @@ export default function Page({ params }: { params: { slug: string } }) {
   if (data) {
     return (
       <Layout>
+        {showLoginModal && (
+          <LoginWithGoogleModal
+            isOpen={showLoginModal}
+            onClose={() => setShowLoginModal(false)}
+          />
+        )}
         <div className="lg:mx-40 lg:my-20 mx-4 mt-4">
           {/* <div>Page: {params.slug}</div> */}
           <h1 className="font-bold lg:text-[2rem] text-[1.5rem] tracking-tight">

@@ -1,15 +1,16 @@
 "use client";
 import { useState } from "react";
+import { IoIosCloseCircle } from "react-icons/io";
 
 interface ModalProps {
   isOpen: boolean;
+  modalHeading: string;
   onClose: () => void;
-  modelHeading: string;
+  children: React.ReactNode;
 }
 
-const Modal: React.FC = (props: ModalProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-  if (isOpen) {
+const Modal: React.FC<ModalProps> = (props) => {
+  if (props.isOpen) {
     return (
       <div
         style={{
@@ -18,20 +19,22 @@ const Modal: React.FC = (props: ModalProps) => {
           left: "50%",
           // transform: "translate(-50%, -50%)",
           transform: "translateX(-50%)",
-
           padding: "1em",
           zIndex: 1000,
         }}
-        className="shadow-lg bg-gray-100   left-1/2 p-4 w-1/2 min-h-[50%]"
+        className="shadow-lg bg-gray-100   left-1/2 p-4 w-1/3 min-h-[30%] rounded-md"
       >
-        <button className="absolute right-[1rem]">X</button>
-        <h2 className="text-center text-lg font-semibold tracking-wide">
-          {props.modelHeading}{" "}
+        <button className="absolute right-[1rem]" onClick={props.onClose}>
+          <IoIosCloseCircle fontSize={"1.5rem"} />
+        </button>
+        <h2 className="text-center text-xl tracking-tight">
+          {props.modalHeading}
         </h2>
+        {props.children}
       </div>
     );
   } else {
-    return <></>;
+    return null;
   }
 };
 
