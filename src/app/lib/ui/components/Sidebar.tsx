@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import clsx from "clsx";
 import { AuthContext } from "../../hooks/AuthContext";
 import { log } from "console";
+import { LoginWithGoogleButton } from "../Buttons/LoginWithGoogleButton";
 
 export const Sidebar = ({ className }: { className?: string }) => {
   const classes = clsx("flex-grow-1", "bg-gray-100 px-10 min-h-screen");
@@ -41,12 +42,13 @@ export const Sidebar = ({ className }: { className?: string }) => {
       {auth.user.isLoggedIn ? (
         loggedInJSX
       ) : (
-        <div className="flex items-center bg-white px-4">
-          <FcGoogle className="text-4xl" />
-          <button className=" w-full py-4 ">
-            <a className="font-semibold cursor-pointer">Continue with Google</a>
-          </button>
-        </div>
+        <LoginWithGoogleButton />
+        // <div className="flex items-center bg-white px-4">
+        //   <FcGoogle className="text-4xl" />
+        //   <button className=" w-full py-4 ">
+        //     <a className="font-semibold cursor-pointer">Continue with Google</a>
+        //   </button>
+        // </div>
       )}
     </div>
   );
