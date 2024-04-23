@@ -1,9 +1,16 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import createSupabaseClient from "../../supabase/supabaseClient";
+import { getDomainName } from "../../utils/domains";
 
-export const LoginWithGoogleButton = () => {
-  const domainName = "http://localhost:3000";
+interface LoginWithGoogleButtonProps {
+  redirectTo?: string;
+}
+
+export const LoginWithGoogleButton: React.FC<LoginWithGoogleButtonProps> = (
+  props
+) => {
+  const domainName = getDomainName();
   const handler = async () => {
     const supabase = createSupabaseClient();
     supabase.auth.signInWithOAuth({ provider: "google" });

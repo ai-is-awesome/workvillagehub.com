@@ -1,3 +1,3 @@
 export function getDomainName(): string {
-  return "http://localhost:3000";
+  return process.env.DOMAIN_NAME;
 }
