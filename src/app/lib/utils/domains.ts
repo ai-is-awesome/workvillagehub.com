@@ -1,3 +1,3 @@
 export function getDomainName(): string {
-  return process.env.DOMAIN_NAME;
+  return process.env.NEXT_PUBLIC_DOMAIN_NAME;
 }
