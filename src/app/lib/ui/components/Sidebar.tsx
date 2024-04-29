@@ -39,17 +39,7 @@ export const Sidebar = ({ className }: { className?: string }) => {
 
       <div className="w-1/2 mx-auto"></div>
       {/* <Button className="bg-brandMain text-white">CLICK</Button> */}
-      {auth.user.isLoggedIn ? (
-        loggedInJSX
-      ) : (
-        <LoginWithGoogleButton />
-        // <div className="flex items-center bg-white px-4">
-        //   <FcGoogle className="text-4xl" />
-        //   <button className=" w-full py-4 ">
-        //     <a className="font-semibold cursor-pointer">Continue with Google</a>
-        //   </button>
-        // </div>
-      )}
+      {auth.user.isLoggedIn ? loggedInJSX : <LoginWithGoogleButton />}
     </div>
   );
 };
