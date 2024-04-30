@@ -93,7 +93,19 @@ function Home() {
   }, []);
 
   if (isLoading || user.status === "loading") {
-    return <Loader />;
+    if (isLoading) {
+      return (
+        <div>
+          <p>Loading data</p>
+          <Loader />;
+        </div>
+      );
+    } else {
+      <div>
+        <p>Loading Auth</p>
+        <Loader />;
+      </div>;
+    }
   }
 
   if (data) {

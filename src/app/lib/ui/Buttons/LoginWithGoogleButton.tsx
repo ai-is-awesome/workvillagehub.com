@@ -11,7 +11,7 @@ export const LoginWithGoogleButton: React.FC<LoginWithGoogleButtonProps> = (
   props
 ) => {
   const domainName = getDomainName();
-  console.log("Domani mame : ", domainName);
+  console.log("Domani mame : ", domainName, domainName + "/auth/callback");
 
   const handler = async () => {
     const supabase = createSupabaseClient();
