@@ -7,6 +7,7 @@ import { getDomainName } from "@/app/lib/utils/domains";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");
+  console.log("Exchanging code for session", code);
   const domainName = getDomainName();
   const supabase = createSupabaseServerClient(cookies());
   if (!code) {
@@ -25,10 +26,12 @@ export async function GET(request: Request) {
   //   }
 
   const user = data.user;
+  console.log(JSON.stringify(user));
 
   if (user && user.email) {
     const supabaseId = user?.id;
     const prismaUser = await prisma.user.findFirst({ where: { supabaseId } });
+
     if (prismaUser) {
       console.log("User already exists so no onboard");
       //   return Response.json(

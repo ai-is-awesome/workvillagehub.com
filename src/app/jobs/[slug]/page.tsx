@@ -72,10 +72,10 @@ export default function Page({ params }: { params: { slug: string } }) {
             {data.job.companyName.companyName}
           </p>
           <p className="mb-3  ">3,00,000 INR - 8,00,000 INR</p>
-          <div className="flex gap-2 my-4">
+          {/* <div className="flex gap-2 my-4">
             <Pill className={"bg-brandMain text-white"}>Java</Pill>
             <Pill className={"bg-brandMain text-white"}>Java</Pill>
-          </div>
+          </div> */}
           <Button className="bg-brandMain" onClick={jobApplyHandler}>
             Apply Now
           </Button>
