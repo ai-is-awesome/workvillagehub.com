@@ -66,13 +66,13 @@ export default function Page({ params }: { params: { slug: string } }) {
         )}
         <div className="lg:mx-40 lg:my-20 mx-4 mt-4">
           {/* <div>Page: {params.slug}</div> */}
-          <h1 className="font-bold lg:text-[2rem] text-[1.5rem] tracking-tight">
+          <h1 className="font-bold lg:text-[1.8rem] text-[1.5rem] tracking-tight">
             {data.job.jobTitle}
           </h1>
-          <p className="font-bold lg:text-[1.2rem]">
+          <p className="font-semibold lg:text-[1.2rem] mb-2 text-gray-800">
             {data.job.companyName.companyName}
           </p>
-          <p className="mb-3  ">3,00,000 INR - 8,00,000 INR</p>
+          {/* <p className="mb-3  ">3,00,000 INR - 8,00,000 INR</p> */}
           {/* <div className="flex gap-2 my-4">
             <Pill className={"bg-brandMain text-white"}>Java</Pill>
             <Pill className={"bg-brandMain text-white"}>Java</Pill>
