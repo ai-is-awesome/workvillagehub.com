@@ -59,6 +59,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <Layout>
         {showLoginModal && (
           <LoginWithGoogleModal
+            redirectTo={"/jobs/" + params.slug}
             isOpen={showLoginModal}
             onClose={() => setShowLoginModal(false)}
           />

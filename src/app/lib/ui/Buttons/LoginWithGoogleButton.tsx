@@ -11,8 +11,10 @@ export const LoginWithGoogleButton: React.FC<LoginWithGoogleButtonProps> = (
   props
 ) => {
   const domainName = getDomainName();
+  const redirectTo = props.redirectTo
+    ? domainName + props.redirectTo
+    : domainName + "/auth/callback";
   console.log("Domani mame : ", domainName, domainName + "/auth/callback");
-
   const handler = async () => {
     const supabase = createSupabaseClient();
     supabase.auth.signInWithOAuth({ provider: "google" });
@@ -20,7 +22,7 @@ export const LoginWithGoogleButton: React.FC<LoginWithGoogleButtonProps> = (
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: domainName + "/auth/callback",
+        redirectTo: redirectTo,
         queryParams: {
           access_type: "offline",
           prompt: "consent",
