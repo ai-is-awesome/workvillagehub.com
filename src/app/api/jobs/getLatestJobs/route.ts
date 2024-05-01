@@ -34,7 +34,8 @@ export async function POST(request: Request, response: Response) {
       id: true,
       jobAddedDate: true,
       companyName: true,
-      Location: true,
+      // Location: true,
+      Location: { select: { City: true, Country: true } },
       technologies: { select: { technology: true } },
     },
   });

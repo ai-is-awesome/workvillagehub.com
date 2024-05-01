@@ -8,9 +8,11 @@ export const transformApiJobs = (job): Job => {
   return {
     jobTitle: job.jobTitle,
     company: job.companyName.companyName,
-    locationString: "New Delhi, India",
     technologies: job.technologies.map((tech) => tech.technology.name),
     addedOnPlatformDate: getDateString(job.jobAddedDate),
     id: job.id,
+    locationString: job.Location
+      ? job.Location.City.cityName + ", " + job.Location.Country.countryName
+      : null,
   };
 };

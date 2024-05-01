@@ -29,7 +29,7 @@ export interface Job extends Record<string, any> {
   id: number;
   jobTitle: string;
   company: string;
-  locationString?: string;
+  locationString?: string | null;
   technologies?: string[];
   addedOnPlatformDate: string;
 }

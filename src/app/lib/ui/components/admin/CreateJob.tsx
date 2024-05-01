@@ -30,6 +30,7 @@ const CreateJob = () => {
       jobTitle: state.jobTitle,
       companyId: getIdFromString(state.companyId),
       jobLink: state.jobUrl,
+      locationId: getIdFromString(state.locationId),
       jobDescription: state.descriptionMarkdown,
       technologiesId: state.technologiesId
         ? transformTechnologiesId(state.technologiesId)

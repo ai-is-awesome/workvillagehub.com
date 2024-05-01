@@ -27,11 +27,11 @@ export const AdminSelectUI = () => {
   ];
 
   const renderedComponent = components.find((obj) => {
-    console.log("all objs: ", obj, "selected: ", selectedMode);
+    // console.log("all objs: ", obj, "selected: ", selectedMode);
     return obj.state === selectedMode;
   });
 
-  console.log(renderedComponent, selectedMode);
+  // console.log(renderedComponent, selectedMode);
 
   return (
     <>
@@ -50,7 +50,7 @@ export const AdminSelectUI = () => {
             <Button
               className="bg-gray-300"
               onClick={() => {
-                console.log("Clicked");
+                // console.log("Clicked");
                 setSelectedMode("create/company");
               }}
             >
@@ -92,7 +92,7 @@ export const AdminSelectUI = () => {
             <Button
               className="bg-gray-300"
               onClick={() => {
-                console.log("Clicked on button get company");
+                // console.log("Clicked on button get company");
                 setSelectedMode("get/company");
               }}
             >

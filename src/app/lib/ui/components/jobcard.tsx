@@ -26,10 +26,13 @@ const JobCard = ({
             <FaBuilding />
             <p className="text-gray-600 text-sm font-semibold">{company}</p>
           </div>
-          <p className="text-gray-600 text-sm flex items-center gap-1">
-            <FaLocationDot />
-            {locationString}
-          </p>
+
+          {locationString && (
+            <p className="text-gray-600 text-sm flex items-center gap-1">
+              <FaLocationDot />
+              {locationString}
+            </p>
+          )}
         </div>
         {technologies && (
           <div className="flex gap-2">
