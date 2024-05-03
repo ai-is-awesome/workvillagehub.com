@@ -21,6 +21,7 @@ const Page: React.FunctionComponent = async () => {
       </div>
     );
   }
+
   if (resp.data.roleId === 2) {
     return (
       <div>
