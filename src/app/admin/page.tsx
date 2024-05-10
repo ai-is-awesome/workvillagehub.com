@@ -38,7 +38,7 @@ const Page: React.FunctionComponent = async () => {
   let selectedComponent = <CreateJob />;
   return (
     <div className=" w-1/2 mx-auto py-20">
-      We have {num} number of users!
+      {/* We have {num} number of users! */}
       <h1 className="text-xl font-bold">Welcome to admin page!</h1>
       <AdminSelectUI />
     </div>

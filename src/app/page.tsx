@@ -10,13 +10,23 @@ import { Job } from "@/app/lib/prisma/generated/prisma-client-js";
 import useRequest from "./lib/hooks/useRequest";
 import { transformApiJobs } from "./lib/utils/transform";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getJobsByPagination } from "./lib/actions/Job";
+import { getJobsByPagination, searchJobs } from "./lib/actions/Job";
 import { Layout } from "./lib/ui/Layout";
 import { MobileTopBar } from "./lib/ui/components/MobileTopBar";
 import { Loader } from "./lib/ui/components/Loader";
 import clsx from "clsx";
 import { cn } from "@/lib/utils";
 import { Button } from "./lib/ui/buttonShad";
+import filterJobs from "./lib/actions/filterJobs";
+import { Select } from "@/components/ui/select";
+import {
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@radix-ui/react-select";
+import { TechnologiesSelect } from "./lib/ui/Dropdown/TechnologiesSelect";
+import { LocationSelect } from "./lib/ui/Dropdown/LocationSelect";
 
 function LandingSection() {
   return (
@@ -90,6 +100,9 @@ function Home() {
           router.push("/");
         });
     }
+    searchJobs("frontend").then((jobs) => {
+      console.log("Seaerch: ", jobs);
+    });
   }, []);
 
   if (isLoading || user.status === "loading") {
@@ -120,6 +133,14 @@ function Home() {
           <div className="mb-12">
             <LandingSection />
           </div>
+          <CenterHomeLayout>
+            <div className="bg-gray-100 px-8 py-12 ">
+              <div className="flex justify-around">
+                <TechnologiesSelect />
+                <LocationSelect />
+              </div>
+            </div>
+          </CenterHomeLayout>
           <CenterHomeLayout>
             <JobCardList>
               {transformedData.map((data: Job) => (

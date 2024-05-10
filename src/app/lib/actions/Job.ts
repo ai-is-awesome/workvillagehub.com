@@ -56,6 +56,30 @@ export async function getJobsByPagination(
   return results;
 }
 
+export const searchJobs = async (query: string) => {
+  const jobs = await prisma.job.findMany({
+    where: {
+      OR: [
+        { jobTitle: { contains: query, mode: "insensitive" } },
+        {
+          companyName: {
+            companyName: { contains: query, mode: "insensitive" },
+          },
+        },
+      ],
+    },
+  });
+  return jobs;
+};
+
+export const getLocations = () => {
+  const result = prisma.location.findMany({
+    select: { City: true, Country: true, id: true },
+  });
+
+  return result;
+};
+
 // class Job {
 //   async createJob(payload: CreateJobPayload) {
 //     const job = await prisma.job.create({

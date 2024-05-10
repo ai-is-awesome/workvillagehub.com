@@ -1,5 +1,6 @@
 import isAdmin from "../lib/actions/isAdmin";
 import { LoginWithGoogleButton } from "../lib/ui/Buttons/LoginWithGoogleButton";
+import { TechnologiesSelect } from "../lib/ui/Dropdown/TechnologiesSelect";
 import Modal from "../lib/ui/components/Modal";
 
 const Page: React.FunctionComponent = async () => {
@@ -14,12 +15,10 @@ const Page: React.FunctionComponent = async () => {
       <p className="text-center text-2xl py-8 font-bold">
         Welcome to the debug page
       </p>
-      <Modal modalHeading="Login to continue" isOpen={true}>
-        <div className="w-1/2 mx-auto mt-8">
-          <LoginWithGoogleButton />
-        </div>
-      </Modal>
-      <div className="w-2/3 mx-auto py-24"></div>
+
+      <div className="w-2/3 mx-auto py-24">
+        <TechnologiesSelect />
+      </div>
     </div>
   );
 };
