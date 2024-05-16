@@ -20,7 +20,11 @@ interface Technology {
 export const TechnologiesSelect = () => {
   const [technologies, setTechnologies] = useState<null | Technology[]>(null);
   useEffect(() => {
-    getTechnology().then((res) => setTechnologies(res));
+    console.log("Running effect");
+    getTechnology().then((res) => {
+      console.log("Response from technolgies", res);
+      setTechnologies(res);
+    });
   }, []);
 
   return (
