@@ -134,10 +134,13 @@ function Home() {
             <LandingSection />
           </div>
           <CenterHomeLayout>
-            <div className="bg-gray-100 px-8 py-12 ">
+            <div className="bg-gray-100 rounded-md px-8 pt-12 pb-8 flex flex-col gap-8">
               <div className="flex justify-around">
                 <TechnologiesSelect />
                 <LocationSelect />
+              </div>
+              <div className="flex justify-center">
+                <Button>Filter Jobs</Button>
               </div>
             </div>
           </CenterHomeLayout>
