@@ -105,59 +105,44 @@ function Home() {
     });
   }, []);
 
-  if (isLoading || user.status === "loading") {
-    if (isLoading) {
-      return (
-        <div>
-          <p>Loading data</p>
-          <Loader />;
+  const transformedData =
+    data === null ? null : data.map((job) => transformApiJobs(job));
+  return (
+    <Layout>
+      <main>
+        <CenterHomeLayout className="lg:my-0">
+          {/* <Jobcard {...jobData[0]} /> */}
+          <MobileTopBar />
+        </CenterHomeLayout>
+        <div className="mb-12">
+          <LandingSection />
         </div>
-      );
-    } else {
-      <div>
-        <p>Loading Auth</p>
-        <Loader />;
-      </div>;
-    }
-  }
-
-  if (data) {
-    const transformedData = data.map((job) => transformApiJobs(job));
-    return (
-      <Layout>
-        <main>
-          <CenterHomeLayout className="lg:my-0">
-            {/* <Jobcard {...jobData[0]} /> */}
-            <MobileTopBar />
-          </CenterHomeLayout>
-          <div className="mb-12">
-            <LandingSection />
-          </div>
-          <CenterHomeLayout>
-            <div className="bg-gray-100 rounded-md px-8 pt-12 pb-8 flex flex-col gap-8">
-              <div className="flex justify-around">
-                <TechnologiesSelect />
-                <LocationSelect />
-              </div>
-              <div className="flex justify-center">
-                <Button>Filter Jobs</Button>
-              </div>
+        <CenterHomeLayout>
+          <div className="bg-gray-100 rounded-md px-8 pt-12 pb-8 flex flex-col gap-8">
+            <div className="flex justify-around">
+              <TechnologiesSelect />
+              <LocationSelect />
             </div>
-          </CenterHomeLayout>
-          <CenterHomeLayout>
+            <div className="flex justify-center">
+              <Button>Filter Jobs</Button>
+            </div>
+          </div>
+        </CenterHomeLayout>
+        <CenterHomeLayout>
+          {data && (
             <JobCardList>
               {transformedData.map((data: Job) => (
                 <Jobcard key={data.id} {...data} />
               ))}
             </JobCardList>
+          )}
+          <CenterHomeLayout>
             <Pagination {...paginationData} />
           </CenterHomeLayout>
-        </main>
-      </Layout>
-    );
-  } else {
-    return <div className="text-black bg-green-700">Nothing Found here...</div>;
-  }
+        </CenterHomeLayout>
+      </main>
+    </Layout>
+  );
 }
 
 export default function HomeWithSuspense() {

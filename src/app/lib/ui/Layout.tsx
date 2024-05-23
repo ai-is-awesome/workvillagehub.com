@@ -6,9 +6,7 @@ export const Layout = (props: React.PropsWithChildren) => {
     <div className="flex">
       <Sidebar />
       {/* <div className="flex justify-center flex-1 my-20"> */}
-      <div>
-        <div>{props.children}</div>
-      </div>
+      <div className=" flex-1">{props.children}</div>
     </div>
   );
 };
