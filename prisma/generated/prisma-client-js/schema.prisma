@@ -24,6 +24,8 @@ model Job {
   applications                  Application[]
   Location                      Location?         @relation(fields: [locationId], references: [id])
   locationId                    Int?
+  source                        String?
+  sourceUniqueIdentifier        String?
 }
 
 model Company {

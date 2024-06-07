@@ -388,7 +388,7 @@ export namespace Prisma {
 
   /**
    * Prisma Client JS version: 5.10.2
-   * Query Engine version: e9771e62de70f79a5e1c604a2d7c8e2a0a874b48
+   * Query Engine version: 12e25d8d06f6ea5a0252864dd9a03b1bb51f3022
    */
   export type PrismaVersion = {
     client: string
@@ -2248,6 +2248,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number | null
     numberOfTimesJobLinkIsClicked: number | null
     locationId: number | null
+    source: string | null
+    sourceUniqueIdentifier: string | null
   }
 
   export type JobMaxAggregateOutputType = {
@@ -2261,6 +2263,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number | null
     numberOfTimesJobLinkIsClicked: number | null
     locationId: number | null
+    source: string | null
+    sourceUniqueIdentifier: string | null
   }
 
   export type JobCountAggregateOutputType = {
@@ -2274,6 +2278,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
     locationId: number
+    source: number
+    sourceUniqueIdentifier: number
     _all: number
   }
 
@@ -2305,6 +2311,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: true
     numberOfTimesJobLinkIsClicked?: true
     locationId?: true
+    source?: true
+    sourceUniqueIdentifier?: true
   }
 
   export type JobMaxAggregateInputType = {
@@ -2318,6 +2326,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: true
     numberOfTimesJobLinkIsClicked?: true
     locationId?: true
+    source?: true
+    sourceUniqueIdentifier?: true
   }
 
   export type JobCountAggregateInputType = {
@@ -2331,6 +2341,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: true
     numberOfTimesJobLinkIsClicked?: true
     locationId?: true
+    source?: true
+    sourceUniqueIdentifier?: true
     _all?: true
   }
 
@@ -2431,6 +2443,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
     locationId: number | null
+    source: string | null
+    sourceUniqueIdentifier: string | null
     _count: JobCountAggregateOutputType | null
     _avg: JobAvgAggregateOutputType | null
     _sum: JobSumAggregateOutputType | null
@@ -2463,6 +2477,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: boolean
     numberOfTimesJobLinkIsClicked?: boolean
     locationId?: boolean
+    source?: boolean
+    sourceUniqueIdentifier?: boolean
     companyName?: boolean | CompanyDefaultArgs<ExtArgs>
     technologies?: boolean | Job$technologiesArgs<ExtArgs>
     applications?: boolean | Job$applicationsArgs<ExtArgs>
@@ -2481,6 +2497,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: boolean
     numberOfTimesJobLinkIsClicked?: boolean
     locationId?: boolean
+    source?: boolean
+    sourceUniqueIdentifier?: boolean
   }
 
   export type JobInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2511,6 +2529,8 @@ export namespace Prisma {
       numberOfDetailedClicks: number
       numberOfTimesJobLinkIsClicked: number
       locationId: number | null
+      source: string | null
+      sourceUniqueIdentifier: string | null
     }, ExtArgs["result"]["job"]>
     composites: {}
   }
@@ -2922,6 +2942,8 @@ export namespace Prisma {
     readonly numberOfDetailedClicks: FieldRef<"Job", 'Int'>
     readonly numberOfTimesJobLinkIsClicked: FieldRef<"Job", 'Int'>
     readonly locationId: FieldRef<"Job", 'Int'>
+    readonly source: FieldRef<"Job", 'String'>
+    readonly sourceUniqueIdentifier: FieldRef<"Job", 'String'>
   }
     
 
@@ -14946,7 +14968,9 @@ export namespace Prisma {
     jobAddedDate: 'jobAddedDate',
     numberOfDetailedClicks: 'numberOfDetailedClicks',
     numberOfTimesJobLinkIsClicked: 'numberOfTimesJobLinkIsClicked',
-    locationId: 'locationId'
+    locationId: 'locationId',
+    source: 'source',
+    sourceUniqueIdentifier: 'sourceUniqueIdentifier'
   };
 
   export type JobScalarFieldEnum = (typeof JobScalarFieldEnum)[keyof typeof JobScalarFieldEnum]
@@ -15172,6 +15196,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFilter<"Job"> | number
     numberOfTimesJobLinkIsClicked?: IntFilter<"Job"> | number
     locationId?: IntNullableFilter<"Job"> | number | null
+    source?: StringNullableFilter<"Job"> | string | null
+    sourceUniqueIdentifier?: StringNullableFilter<"Job"> | string | null
     companyName?: XOR<CompanyRelationFilter, CompanyWhereInput>
     technologies?: JobTechnologiesListRelationFilter
     applications?: ApplicationListRelationFilter
@@ -15189,6 +15215,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: SortOrder
     numberOfTimesJobLinkIsClicked?: SortOrder
     locationId?: SortOrderInput | SortOrder
+    source?: SortOrderInput | SortOrder
+    sourceUniqueIdentifier?: SortOrderInput | SortOrder
     companyName?: CompanyOrderByWithRelationInput
     technologies?: JobTechnologiesOrderByRelationAggregateInput
     applications?: ApplicationOrderByRelationAggregateInput
@@ -15209,6 +15237,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFilter<"Job"> | number
     numberOfTimesJobLinkIsClicked?: IntFilter<"Job"> | number
     locationId?: IntNullableFilter<"Job"> | number | null
+    source?: StringNullableFilter<"Job"> | string | null
+    sourceUniqueIdentifier?: StringNullableFilter<"Job"> | string | null
     companyName?: XOR<CompanyRelationFilter, CompanyWhereInput>
     technologies?: JobTechnologiesListRelationFilter
     applications?: ApplicationListRelationFilter
@@ -15226,6 +15256,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: SortOrder
     numberOfTimesJobLinkIsClicked?: SortOrder
     locationId?: SortOrderInput | SortOrder
+    source?: SortOrderInput | SortOrder
+    sourceUniqueIdentifier?: SortOrderInput | SortOrder
     _count?: JobCountOrderByAggregateInput
     _avg?: JobAvgOrderByAggregateInput
     _max?: JobMaxOrderByAggregateInput
@@ -15247,6 +15279,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntWithAggregatesFilter<"Job"> | number
     numberOfTimesJobLinkIsClicked?: IntWithAggregatesFilter<"Job"> | number
     locationId?: IntNullableWithAggregatesFilter<"Job"> | number | null
+    source?: StringNullableWithAggregatesFilter<"Job"> | string | null
+    sourceUniqueIdentifier?: StringNullableWithAggregatesFilter<"Job"> | string | null
   }
 
   export type CompanyWhereInput = {
@@ -15868,6 +15902,8 @@ export namespace Prisma {
     jobAddedDate?: Date | string | null
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     companyName: CompanyCreateNestedOneWithoutJobInput
     technologies?: JobTechnologiesCreateNestedManyWithoutJobInput
     applications?: ApplicationCreateNestedManyWithoutJobInput
@@ -15885,6 +15921,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
     locationId?: number | null
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     technologies?: JobTechnologiesUncheckedCreateNestedManyWithoutJobInput
     applications?: ApplicationUncheckedCreateNestedManyWithoutJobInput
   }
@@ -15897,6 +15935,8 @@ export namespace Prisma {
     jobAddedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     companyName?: CompanyUpdateOneRequiredWithoutJobNestedInput
     technologies?: JobTechnologiesUpdateManyWithoutJobNestedInput
     applications?: ApplicationUpdateManyWithoutJobNestedInput
@@ -15914,6 +15954,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     technologies?: JobTechnologiesUncheckedUpdateManyWithoutJobNestedInput
     applications?: ApplicationUncheckedUpdateManyWithoutJobNestedInput
   }
@@ -15929,6 +15971,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
     locationId?: number | null
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
   }
 
   export type JobUpdateManyMutationInput = {
@@ -15939,6 +15983,8 @@ export namespace Prisma {
     jobAddedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JobUncheckedUpdateManyInput = {
@@ -15952,6 +15998,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CompanyCreateInput = {
@@ -16597,6 +16645,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: SortOrder
     numberOfTimesJobLinkIsClicked?: SortOrder
     locationId?: SortOrder
+    source?: SortOrder
+    sourceUniqueIdentifier?: SortOrder
   }
 
   export type JobAvgOrderByAggregateInput = {
@@ -16618,6 +16668,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: SortOrder
     numberOfTimesJobLinkIsClicked?: SortOrder
     locationId?: SortOrder
+    source?: SortOrder
+    sourceUniqueIdentifier?: SortOrder
   }
 
   export type JobMinOrderByAggregateInput = {
@@ -16631,6 +16683,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: SortOrder
     numberOfTimesJobLinkIsClicked?: SortOrder
     locationId?: SortOrder
+    source?: SortOrder
+    sourceUniqueIdentifier?: SortOrder
   }
 
   export type JobSumOrderByAggregateInput = {
@@ -18281,6 +18335,8 @@ export namespace Prisma {
     jobAddedDate?: Date | string | null
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     technologies?: JobTechnologiesCreateNestedManyWithoutJobInput
     applications?: ApplicationCreateNestedManyWithoutJobInput
     Location?: LocationCreateNestedOneWithoutJobInput
@@ -18296,6 +18352,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
     locationId?: number | null
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     technologies?: JobTechnologiesUncheckedCreateNestedManyWithoutJobInput
     applications?: ApplicationUncheckedCreateNestedManyWithoutJobInput
   }
@@ -18340,6 +18398,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFilter<"Job"> | number
     numberOfTimesJobLinkIsClicked?: IntFilter<"Job"> | number
     locationId?: IntNullableFilter<"Job"> | number | null
+    source?: StringNullableFilter<"Job"> | string | null
+    sourceUniqueIdentifier?: StringNullableFilter<"Job"> | string | null
   }
 
   export type LocationCreateWithoutCountryInput = {
@@ -18521,6 +18581,8 @@ export namespace Prisma {
     jobAddedDate?: Date | string | null
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     companyName: CompanyCreateNestedOneWithoutJobInput
     technologies?: JobTechnologiesCreateNestedManyWithoutJobInput
     applications?: ApplicationCreateNestedManyWithoutJobInput
@@ -18536,6 +18598,8 @@ export namespace Prisma {
     jobAddedDate?: Date | string | null
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     technologies?: JobTechnologiesUncheckedCreateNestedManyWithoutJobInput
     applications?: ApplicationUncheckedCreateNestedManyWithoutJobInput
   }
@@ -18971,6 +19035,8 @@ export namespace Prisma {
     jobAddedDate?: Date | string | null
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     companyName: CompanyCreateNestedOneWithoutJobInput
     technologies?: JobTechnologiesCreateNestedManyWithoutJobInput
     Location?: LocationCreateNestedOneWithoutJobInput
@@ -18987,6 +19053,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
     locationId?: number | null
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     technologies?: JobTechnologiesUncheckedCreateNestedManyWithoutJobInput
   }
 
@@ -19050,6 +19118,8 @@ export namespace Prisma {
     jobAddedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     companyName?: CompanyUpdateOneRequiredWithoutJobNestedInput
     technologies?: JobTechnologiesUpdateManyWithoutJobNestedInput
     Location?: LocationUpdateOneWithoutJobNestedInput
@@ -19066,6 +19136,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     technologies?: JobTechnologiesUncheckedUpdateManyWithoutJobNestedInput
   }
 
@@ -19228,6 +19300,8 @@ export namespace Prisma {
     jobAddedDate?: Date | string | null
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     companyName: CompanyCreateNestedOneWithoutJobInput
     applications?: ApplicationCreateNestedManyWithoutJobInput
     Location?: LocationCreateNestedOneWithoutJobInput
@@ -19244,6 +19318,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
     locationId?: number | null
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
     applications?: ApplicationUncheckedCreateNestedManyWithoutJobInput
   }
 
@@ -19291,6 +19367,8 @@ export namespace Prisma {
     jobAddedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     companyName?: CompanyUpdateOneRequiredWithoutJobNestedInput
     applications?: ApplicationUpdateManyWithoutJobNestedInput
     Location?: LocationUpdateOneWithoutJobNestedInput
@@ -19307,6 +19385,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     applications?: ApplicationUncheckedUpdateManyWithoutJobNestedInput
   }
 
@@ -19378,6 +19458,8 @@ export namespace Prisma {
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
     locationId?: number | null
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
   }
 
   export type JobUpdateWithoutCompanyNameInput = {
@@ -19388,6 +19470,8 @@ export namespace Prisma {
     jobAddedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     technologies?: JobTechnologiesUpdateManyWithoutJobNestedInput
     applications?: ApplicationUpdateManyWithoutJobNestedInput
     Location?: LocationUpdateOneWithoutJobNestedInput
@@ -19403,6 +19487,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     technologies?: JobTechnologiesUncheckedUpdateManyWithoutJobNestedInput
     applications?: ApplicationUncheckedUpdateManyWithoutJobNestedInput
   }
@@ -19417,6 +19503,8 @@ export namespace Prisma {
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationCreateManyCountryInput = {
@@ -19504,6 +19592,8 @@ export namespace Prisma {
     jobAddedDate?: Date | string | null
     numberOfDetailedClicks: number
     numberOfTimesJobLinkIsClicked: number
+    source?: string | null
+    sourceUniqueIdentifier?: string | null
   }
 
   export type JobUpdateWithoutLocationInput = {
@@ -19514,6 +19604,8 @@ export namespace Prisma {
     jobAddedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     companyName?: CompanyUpdateOneRequiredWithoutJobNestedInput
     technologies?: JobTechnologiesUpdateManyWithoutJobNestedInput
     applications?: ApplicationUpdateManyWithoutJobNestedInput
@@ -19529,6 +19621,8 @@ export namespace Prisma {
     jobAddedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     technologies?: JobTechnologiesUncheckedUpdateManyWithoutJobNestedInput
     applications?: ApplicationUncheckedUpdateManyWithoutJobNestedInput
   }
@@ -19543,6 +19637,8 @@ export namespace Prisma {
     jobAddedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     numberOfDetailedClicks?: IntFieldUpdateOperationsInput | number
     numberOfTimesJobLinkIsClicked?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceUniqueIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ApplicationCreateManyUserInput = {

@@ -3,7 +3,10 @@ import prisma from "@/app/lib/prisma/prisma";
 import isAdmin from "./isAdmin";
 import { all } from "axios";
 
-async function createCompany(companyName: string, companyLogoURL: string) {
+export async function createCompany(
+  companyName: string,
+  companyLogoURL: string = ""
+) {
   const allowed = await isAdmin();
   console.log("allowed is ", allowed);
   if (!allowed) {
@@ -19,4 +22,21 @@ async function createCompany(companyName: string, companyLogoURL: string) {
   return company;
 }
 
-export default createCompany;
+interface Filter {
+  ignoreCasing: boolean;
+}
+
+export async function findCompany(
+  companyName: string,
+  filter: Filter = undefined
+) {
+  const data = await prisma.company.findFirst({
+    where: {
+      companyName: {
+        equals: companyName,
+        mode: filter.ignoreCasing ? "insensitive" : "default",
+      },
+    },
+  });
+  return data;
+}

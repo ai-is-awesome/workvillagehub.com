@@ -2,7 +2,7 @@
 import JobCardList from "@/app/lib/ui/components/jobCardList";
 import Jobcard from "@/app/lib/ui/components/jobcard";
 import Pagination from "@/app/lib/ui/pagination";
-
+import MoonLoader from "react-spinners/MoonLoader";
 import { useEffect, useState, Suspense } from "react";
 import useAuth from "./lib/hooks/AuthContext";
 import axios from "axios";
@@ -11,7 +11,7 @@ import useRequest from "./lib/hooks/useRequest";
 import { transformApiJobs } from "./lib/utils/transform";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getJobsByPagination, searchJobs } from "./lib/actions/Job";
-import { Layout } from "./lib/ui/Layout";
+import { Center, Layout } from "./lib/ui/Layout";
 import { MobileTopBar } from "./lib/ui/components/MobileTopBar";
 import { Loader } from "./lib/ui/components/Loader";
 import clsx from "clsx";
@@ -124,11 +124,17 @@ function Home() {
               <LocationSelect />
             </div>
             <div className="flex justify-center">
-              <Button>Filter Jobs</Button>
+              <Button className="bg-brandMain">Filter Jobs</Button>
             </div>
           </div>
         </CenterHomeLayout>
         <CenterHomeLayout>
+          {!data && (
+            <Center>
+              <MoonLoader color="#073b4c" />
+            </Center>
+          )}
+
           {data && (
             <JobCardList>
               {transformedData.map((data: Job) => (
@@ -136,9 +142,9 @@ function Home() {
               ))}
             </JobCardList>
           )}
-          <CenterHomeLayout>
+          <Center className="py-8">
             <Pagination {...paginationData} />
-          </CenterHomeLayout>
+          </Center>
         </CenterHomeLayout>
       </main>
     </Layout>

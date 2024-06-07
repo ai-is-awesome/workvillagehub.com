@@ -17,11 +17,11 @@ exports.$Enums = {}
 
 /**
  * Prisma Client JS version: 5.10.2
- * Query Engine version: e9771e62de70f79a5e1c604a2d7c8e2a0a874b48
+ * Query Engine version: 12e25d8d06f6ea5a0252864dd9a03b1bb51f3022
  */
 Prisma.prismaVersion = {
   client: "5.10.2",
-  engine: "e9771e62de70f79a5e1c604a2d7c8e2a0a874b48"
+  engine: "12e25d8d06f6ea5a0252864dd9a03b1bb51f3022"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -117,7 +117,9 @@ exports.Prisma.JobScalarFieldEnum = {
   jobAddedDate: 'jobAddedDate',
   numberOfDetailedClicks: 'numberOfDetailedClicks',
   numberOfTimesJobLinkIsClicked: 'numberOfTimesJobLinkIsClicked',
-  locationId: 'locationId'
+  locationId: 'locationId',
+  source: 'source',
+  sourceUniqueIdentifier: 'sourceUniqueIdentifier'
 };
 
 exports.Prisma.CompanyScalarFieldEnum = {

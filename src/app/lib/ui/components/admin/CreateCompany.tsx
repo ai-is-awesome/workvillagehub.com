@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "../../Button";
-import createCompany from "@/app/lib/actions/createCompany";
+import { createCompany } from "@/app/lib/actions/companyActions";
 
 export const CreateCompany = () => {
   const [state, setState] = useState({ companyName: "", companyLogoURL: "" });

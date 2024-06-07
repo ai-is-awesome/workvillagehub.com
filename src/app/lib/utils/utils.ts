@@ -79,3 +79,14 @@ export function getIdFromString(id: string | number) {
     throw new Error("Invalid id");
   }
 }
+
+export function transformBase64ToBlob(base64: string) {
+  const base64Data = base64.split(",")[1];
+  const byteCharacters = atob(base64Data);
+  const byteNumbers = new Array(byteCharacters.length)
+    .fill(0)
+    .map((_, i) => byteCharacters.charCodeAt(i));
+  const byteArray = new Uint8Array(byteNumbers);
+  const blob = new Blob([byteArray], { type: "image/png" });
+  return blob;
+}

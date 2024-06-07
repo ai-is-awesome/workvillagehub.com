@@ -10,6 +10,8 @@ import getCompanies from "@/app/lib/actions/getCompanies";
 import getTechnology from "@/app/lib/actions/getTechnology";
 import AddLocation from "./AddLocation";
 import { AddJobDescription } from "./AddJobDescription";
+import { Card } from "../../admin/Card";
+import { importCuvetteFileInDb, test } from "@/app/lib/actions/scraperActions";
 
 export const AdminSelectUI = () => {
   const [selectedMode, setSelectedMode] = React.useState("create/asset");
@@ -77,7 +79,7 @@ export const AdminSelectUI = () => {
             </Button>
           </div>
         </div>
-        <div className="border border-solid border-gray-300 px-8 py-8">
+        <Card>
           <h1 className="text-center text-xl mb-4">Get</h1>
           <div className="flex flex-row gap-4">
             <Button className="bg-gray-300">Get latest jobs</Button>
@@ -100,7 +102,18 @@ export const AdminSelectUI = () => {
             </Button>
             <Button> Upload a new asset</Button>
           </div>
-        </div>
+        </Card>
+        <Card>
+          <h1 className="text-center text-xl mb-4">Scrape</h1>
+          <Button
+            className="bg-gray-300"
+            onClick={() => {
+              importCuvetteFileInDb();
+            }}
+          >
+            Scrape Cuvette File
+          </Button>
+        </Card>
       </div>
 
       {renderedComponent && (
