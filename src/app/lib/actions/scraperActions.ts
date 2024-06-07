@@ -18,7 +18,11 @@ export async function importCuvetteFileInDb() {
   const data = json["data"];
   for (let i = 0; i < 10; i++) {
     const job = data[i];
-    console.log(Object.keys(job));
+    const company = job["companyName"];
+    const isCompanyThere = await findCompany(company, { ignoreCasing: true });
+    if (!isCompanyThere) {
+      console.log("Company not found");
+    }
   }
   const imgURL = json["data"][5]["imageUrl"];
   const blob = transformBase64ToBlob(imgURL);
