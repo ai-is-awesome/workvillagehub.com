@@ -7,7 +7,7 @@ import { CreateCompany } from "./CreateCompany";
 import GetCompany from "./GetCompany";
 import { RenderDbSchema } from "./GetDbItem";
 import getCompanies from "@/app/lib/actions/getCompanies";
-import getTechnology from "@/app/lib/actions/getTechnology";
+import getTechnology from "@/app/lib/actions/technologyActions";
 import AddLocation from "./AddLocation";
 import { AddJobDescription } from "./AddJobDescription";
 import { Card } from "../../admin/Card";

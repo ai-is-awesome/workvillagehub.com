@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import React, { useEffect, useState } from "react";
-import getTechnology from "../../actions/getTechnology";
+import getTechnology from "../../actions/technologyActions";
 
 interface Technology {
   id: string;

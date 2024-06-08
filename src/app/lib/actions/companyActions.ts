@@ -7,7 +7,7 @@ import { all } from "axios";
 export async function createCompany(
   companyName: string,
   companyLogoURL: string = ""
-) {
+): Promise<Company> {
   const allowed = await isAdmin();
   console.log("allowed is ", allowed);
   if (!allowed) {

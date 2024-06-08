@@ -23,6 +23,7 @@ async function createJob(payload: CreateJobPayload) {
       locationId: payload.locationId,
     },
   });
+
   console.log("Job Payload while craeeting job is : ", payload);
   if (!payload.technologiesId) return job;
 
