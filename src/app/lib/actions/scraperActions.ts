@@ -19,10 +19,11 @@ export async function importCuvetteFileInDb() {
   for (let i = 0; i < 10; i++) {
     const job = data[i];
     const company = job["companyName"];
-    const isCompanyThere = await findCompany(company, { ignoreCasing: true });
-    if (!isCompanyThere) {
+    const companyFromDb = await findCompany(company, { ignoreCasing: true });
+    if (companyFromDb === null) {
       console.log("Company not found");
     }
+    const logoURL = await generateCuvetteImageUrl("");
   }
   const imgURL = json["data"][5]["imageUrl"];
   const blob = transformBase64ToBlob(imgURL);
@@ -35,4 +36,15 @@ export async function importCuvetteFileInDb() {
   // const { data, error } = await createSupabaseServerClient(cookies())
   //   .storage.from("companylogos")
   //   .upload("clogos/img3.jpeg", blob);
+}
+
+async function generateCuvetteImageUrl(url: string): Promise<string> {
+  if (url.startsWith("data:image")) {
+    const blob = transformBase64ToBlob(url);
+    const random = randomUUID();
+    const path = `clogos/${random}.jpeg`;
+    const imgUrl = await uploadImage("companylogos", path, blob);
+    return imgUrl;
+  }
+  return url;
 }

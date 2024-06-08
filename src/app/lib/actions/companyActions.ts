@@ -1,5 +1,6 @@
 "use server";
 import prisma from "@/app/lib/prisma/prisma";
+import { Company } from "../../../../prisma/generated/prisma-client-js";
 import isAdmin from "./isAdmin";
 import { all } from "axios";
 
@@ -29,7 +30,7 @@ interface Filter {
 export async function findCompany(
   companyName: string,
   filter: Filter = undefined
-) {
+): Promise<Company> {
   const data = await prisma.company.findFirst({
     where: {
       companyName: {
