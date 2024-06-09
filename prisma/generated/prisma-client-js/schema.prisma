@@ -23,6 +23,7 @@ model Job {
   technologies                  JobTechnologies[]
   applications                  Application[]
   Location                      Location?         @relation(fields: [locationId], references: [id])
+  LocationBackupString          String?
   locationId                    Int?
   source                        String?
   sourceUniqueIdentifier        String?

@@ -7,8 +7,12 @@ interface CreateJobPayload {
   companyId: number;
   jobDescription?: string;
   jobPostDate?: Date;
+  jobAddedDate?: Date;
   technologiesId?: number[];
   locationId?: number;
+  source?: string;
+  sourceUniqueIdentifier?: string;
+  LocationBackupString?: string;
 }
 async function createJob(payload: CreateJobPayload) {
   const job = await prisma.job.create({
@@ -21,10 +25,13 @@ async function createJob(payload: CreateJobPayload) {
       numberOfDetailedClicks: 0,
       numberOfTimesJobLinkIsClicked: 0,
       locationId: payload.locationId,
+      source: payload.source,
+      sourceUniqueIdentifier: payload.sourceUniqueIdentifier,
+      LocationBackupString: payload.LocationBackupString,
     },
   });
 
-  console.log("Job Payload while craeeting job is : ", payload);
+  // console.log("Job Payload while craeeting job is : ", payload);
   if (!payload.technologiesId) return job;
 
   await prisma.jobTechnologies.createMany({

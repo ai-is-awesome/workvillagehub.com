@@ -10,14 +10,20 @@ async function getTechnology() {
   return result;
 }
 
-export async function createTechnology(
-  payload: Technology
-): Promise<Technology> {
+export async function createTechnology(payload): Promise<Technology> {
   const technology = await prisma.technology.create({
     data: payload,
   });
 
   return technology;
+}
+
+async function searchTechnology() {}
+
+export async function findTechnology(name: string): Promise<Technology | null> {
+  return await prisma.technology.findFirst({
+    where: { name: { equals: name, mode: "insensitive" } },
+  });
 }
 
 export default getTechnology;

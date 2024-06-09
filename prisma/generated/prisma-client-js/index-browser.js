@@ -117,6 +117,7 @@ exports.Prisma.JobScalarFieldEnum = {
   jobAddedDate: 'jobAddedDate',
   numberOfDetailedClicks: 'numberOfDetailedClicks',
   numberOfTimesJobLinkIsClicked: 'numberOfTimesJobLinkIsClicked',
+  LocationBackupString: 'LocationBackupString',
   locationId: 'locationId',
   source: 'source',
   sourceUniqueIdentifier: 'sourceUniqueIdentifier'

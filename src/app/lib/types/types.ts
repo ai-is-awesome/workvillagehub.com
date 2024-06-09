@@ -33,3 +33,5 @@ export interface Job extends Record<string, any> {
   technologies?: string[];
   addedOnPlatformDate: string;
 }
+
+export interface Technology {}
