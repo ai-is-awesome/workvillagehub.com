@@ -81,13 +81,17 @@ function Home() {
   const { data, error, isLoading, fetchData } = useRequest({
     url: url,
     method: "post",
-    data: { page: 1, limit: 14 },
+    data: { page: page, limit: 14 },
   });
 
   const paginationData = {
     totalPages: 10,
     currentPage: page,
     onChange: (p) => setPage(p),
+  };
+
+  const next = async () => {
+    setPage(page + 1);
   };
 
   useEffect(() => {
@@ -101,9 +105,9 @@ function Home() {
         });
     }
     searchJobs("frontend").then((jobs) => {
-      console.log("Seaerch: ", jobs);
+      console.log("Search: ", jobs);
     });
-  }, []);
+  }, [page]);
 
   const transformedData =
     data === null ? null : data.map((job) => transformApiJobs(job));
@@ -145,6 +149,7 @@ function Home() {
           <Center className="py-8">
             <Pagination {...paginationData} />
           </Center>
+          <Button onClick={next}>Next</Button>
         </CenterHomeLayout>
       </main>
     </Layout>
