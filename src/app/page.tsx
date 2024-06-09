@@ -149,7 +149,7 @@ function Home() {
           <Center className="py-8">
             <Pagination {...paginationData} />
           </Center>
-          <Button onClick={next}>Next</Button>
+          {/* <Button onClick={next}>Next</Button> */}
         </CenterHomeLayout>
       </main>
     </Layout>
