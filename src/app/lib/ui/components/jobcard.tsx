@@ -18,13 +18,13 @@ const JobCard = ({
       className="bg-gray-100  text-brandMain hover:bg-slate-200 px-4 py-4 cursor-pointer min-w-[400px] rounded-lg"
     >
       <div className="flex flex-col gap-2">
-        <a className="font-bold hover:underline" href={`/jobs/${id}`}>
+        <a className="font-bold text-lg hover:underline" href={`/jobs/${id}`}>
           {jobTitle}
         </a>
         <div className="">
-          <div className="flex items-center gap-1 my-1">
+          <div className="flex items-center gap-1 mb-1">
             <FaBuilding />
-            <p className="text-gray-600 text-sm font-semibold">{company}</p>
+            <p className="text-black text-sm font-semibold">{company}</p>
           </div>
 
           {locationString && (
@@ -50,7 +50,7 @@ const JobCard = ({
           </div>
         )}
       </div>
-      <div>{addedOnPlatformDate}</div>
+      <div className="text-gray-600 text-sm mt-4">{addedOnPlatformDate}</div>
     </a>
   );
 };
