@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <Analytics mode={"production"} />;{children}
+        </body>
       </Providers>
     </html>
   );
