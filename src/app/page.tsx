@@ -97,6 +97,10 @@ function Home() {
 
   useEffect(() => {
     fetchData();
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [page]);
+
+  useEffect(() => {
     if (searchParams.get("code")) {
       axios
         .get("/auth/callback", { code: searchParams.get("code") })
@@ -105,8 +109,7 @@ function Home() {
           router.push("/");
         });
     }
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  }, [page]);
+  }, []);
 
   const transformedData =
     data === null ? null : data.map((job) => transformApiJobs(job));
