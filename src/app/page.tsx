@@ -3,7 +3,7 @@ import JobCardList from "@/app/lib/ui/components/jobCardList";
 import Jobcard from "@/app/lib/ui/components/jobcard";
 import Pagination from "@/app/lib/ui/pagination";
 import MoonLoader from "react-spinners/MoonLoader";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useRef } from "react";
 import useAuth from "./lib/hooks/AuthContext";
 import axios from "axios";
 import { Job } from "@/app/lib/prisma/generated/prisma-client-js";
@@ -76,6 +76,7 @@ function Home() {
   const [page, setPage] = useState(1);
   const searchParams = useSearchParams();
   const { user, signOut } = useAuth();
+  const ref = useRef(null);
   const router = useRouter();
   const url = "/api/jobs/getLatestJobs";
   const { data, error, isLoading, fetchData } = useRequest({
@@ -104,9 +105,7 @@ function Home() {
           router.push("/");
         });
     }
-    searchJobs("frontend").then((jobs) => {
-      console.log("Search: ", jobs);
-    });
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [page]);
 
   const transformedData =
@@ -122,13 +121,15 @@ function Home() {
           <LandingSection />
         </div>
         <CenterHomeLayout>
-          <div className="bg-gray-100 rounded-md px-8 pt-12 pb-8 flex flex-col gap-8">
-            <div className="flex justify-around">
-              <TechnologiesSelect />
-              <LocationSelect />
-            </div>
-            <div className="flex justify-center">
-              <Button className="bg-brandMain">Filter Jobs</Button>
+          <div ref={ref}>
+            <div className="bg-gray-100 rounded-md px-8 pt-12 pb-8 flex flex-col gap-8">
+              <div className="flex justify-around">
+                <TechnologiesSelect />
+                <LocationSelect />
+              </div>
+              <div className="flex justify-center">
+                <Button className="bg-brandMain">Filter Jobs</Button>
+              </div>
             </div>
           </div>
         </CenterHomeLayout>
@@ -146,6 +147,7 @@ function Home() {
               ))}
             </JobCardList>
           )}
+
           <Center className="py-8">
             <Pagination {...paginationData} />
           </Center>
