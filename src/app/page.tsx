@@ -126,7 +126,7 @@ function Home() {
         <CenterHomeLayout>
           <div ref={ref}>
             <div className="bg-gray-100 rounded-md px-8 pt-12 pb-8 flex flex-col gap-8">
-              <div className="flex justify-around">
+              <div className="flex flex-col lg:flex-row justify-around">
                 <TechnologiesSelect />
                 <LocationSelect />
               </div>
