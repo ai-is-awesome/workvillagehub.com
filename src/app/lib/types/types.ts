@@ -32,6 +32,7 @@ export interface Job extends Record<string, any> {
   locationString?: string | null;
   technologies?: string[];
   addedOnPlatformDate: string;
+  addedOnSourceDate: string | null;
 }
 
 export interface Technology {}

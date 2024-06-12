@@ -10,6 +10,7 @@ export const transformApiJobs = (job): Job => {
     company: job.companyName.companyName,
     technologies: job.technologies.map((tech) => tech.technology.name),
     addedOnPlatformDate: getDateString(job.jobAddedDate),
+    addedOnSourceDate: getDateString(job.jobPostDate),
     id: job.id,
     locationString: job.Location
       ? job.Location.City.cityName + ", " + job.Location.Country.countryName

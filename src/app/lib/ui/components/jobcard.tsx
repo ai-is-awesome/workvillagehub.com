@@ -11,6 +11,7 @@ const JobCard = ({
   technologies,
   id,
   addedOnPlatformDate,
+  addedOnSourceDate,
 }: Job) => {
   return (
     <a
@@ -55,7 +56,9 @@ const JobCard = ({
           </div>
         )}
       </div>
-      <div className="text-gray-600 text-sm mt-4">{addedOnPlatformDate}</div>
+      <div className="text-gray-600 text-sm mt-4">
+        {addedOnSourceDate ? addedOnSourceDate : addedOnPlatformDate}
+      </div>
     </a>
   );
 };
