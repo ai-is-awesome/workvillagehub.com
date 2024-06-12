@@ -15,10 +15,15 @@ const JobCard = ({
   return (
     <a
       href={`/jobs/${id}`}
+      target="_blank"
       className="bg-white  text-brandMain hover:bg-slate-200 px-4 py-4 cursor-pointer min-w-[400px] rounded-lg"
     >
       <div className="flex flex-col gap-2">
-        <a className="font-bold text-lg hover:underline" href={`/jobs/${id}`}>
+        <a
+          className="font-bold text-lg hover:underline"
+          target="_blank"
+          href={`/jobs/${id}`}
+        >
           {jobTitle}
         </a>
         <div className="">
