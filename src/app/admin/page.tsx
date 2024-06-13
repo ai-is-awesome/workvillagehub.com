@@ -39,7 +39,9 @@ const Page: React.FunctionComponent = async () => {
   return (
     <div className=" w-1/2 mx-auto py-20">
       {/* We have {num} number of users! */}
-      <h1 className="text-xl font-bold">Welcome to admin page!</h1>
+      <h1 className="text-xl font-bold">
+        Welcome to admin page! Secret : {num}
+      </h1>
       <AdminSelectUI />
     </div>
   );
