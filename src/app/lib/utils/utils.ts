@@ -20,7 +20,10 @@ export async function getRequestBody(
   }
 }
 
-export const getDateString = (date: string): string => {
+export const getDateString = (date: string | null): string | null => {
+  if (date === null) {
+    return null;
+  }
   const dateObject = new Date(date);
   // const options = { day: "numeric", month: "long", year: "2-digit" };
   const dateString = dateObject.toLocaleDateString("en-US", {

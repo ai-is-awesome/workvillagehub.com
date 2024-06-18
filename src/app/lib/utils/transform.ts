@@ -4,8 +4,7 @@ import { Job } from "../types/types";
 import { getDateString } from "./utils";
 
 export const transformApiJobs = (job): Job => {
-  // console.log("Job received in transform is ; ", job);
-  return {
+  const transformedJob = {
     jobTitle: job.jobTitle,
     company: job.companyName.companyName,
     technologies: job.technologies.map((tech) => tech.technology.name),
@@ -16,6 +15,8 @@ export const transformApiJobs = (job): Job => {
       ? job.Location.City.cityName + ", " + job.Location.Country.countryName
       : null,
   };
+  console.log("tf", transformedJob);
+  return transformedJob;
 };
 
 export const transformLocation = (location) => {
