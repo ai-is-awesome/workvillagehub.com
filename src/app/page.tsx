@@ -120,10 +120,7 @@ function Home() {
           {/* <Jobcard {...jobData[0]} /> */}
           <MobileTopBar />
         </CenterHomeLayout>
-        <div className="mb-12">
-          <LandingSection />
-        </div>
-        <CenterHomeLayout>
+        <CenterHomeLayout className="lg:my-4">
           <div ref={ref}>
             <div className="bg-gray-100 rounded-md px-8 pt-12 pb-8 flex flex-col gap-8">
               <div className="flex flex-col lg:flex-row justify-around">
@@ -136,7 +133,7 @@ function Home() {
             </div>
           </div>
         </CenterHomeLayout>
-        <CenterHomeLayout>
+        <CenterHomeLayout className="lg:my-12">
           {!data && (
             <Center>
               <MoonLoader color="#073b4c" />
