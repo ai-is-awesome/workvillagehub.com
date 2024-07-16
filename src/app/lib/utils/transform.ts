@@ -15,7 +15,7 @@ export const transformApiJobs = (job): Job => {
       ? job.Location.City.cityName + ", " + job.Location.Country.countryName
       : null,
   };
-  console.log("tf", transformedJob);
+
   return transformedJob;
 };
 

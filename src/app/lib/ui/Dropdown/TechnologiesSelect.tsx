@@ -22,7 +22,7 @@ export const TechnologiesSelect = () => {
   useEffect(() => {
     console.log("Running effect");
     getTechnology().then((res) => {
-      console.log("Response from technolgies", res);
+      // console.log("Response from technolgies", res);
       setTechnologies(res);
     });
   }, []);
