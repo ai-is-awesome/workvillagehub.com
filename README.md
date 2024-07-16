@@ -37,14 +37,12 @@ To get a local copy of the project up and running, follow these steps:
 
 2.  **Install Dependencies:**
 
-        ```
-
+    ```bash
     npm install
-
-        ```
+    ```
 
 3.  **Setup environment variables**
-    Copy the .env.example and rename it to .env
+    Copy the `.env.example` and rename it to `.env`
 
 4.  **Run the dev server**
     `npm run dev`
