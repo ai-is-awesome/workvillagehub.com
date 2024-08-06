@@ -20,7 +20,7 @@ const JobCard = ({
     <a
       href={`/jobs/${id}`}
       target="_blank"
-      className="bg-white min-h-[230px]  hover:bg-slate-200 px-4 py-4 cursor-pointer min-w-[400px] sm:min-w-[200px] rounded-lg"
+      className="bg-white min-h-[230px]  hover:bg-slate-200 px-4 py-4 cursor-pointer min-w-[400px] sm:min-w-[200px] rounded-lg border-[1.8px] border-gray-100"
     >
       <div className="flex flex-col justify-between h-full">
         <div>
