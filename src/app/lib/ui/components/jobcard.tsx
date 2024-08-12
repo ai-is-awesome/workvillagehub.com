@@ -5,7 +5,9 @@ import { FaBuilding } from "react-icons/fa";
 import { Pill } from "../Pill";
 import { Button } from "../buttonShad";
 import Link from "next/link";
-import { JobLinkButton } from "./Buttons/joblinkbutton";
+import { ApplyNowButton, JobLinkButton } from "./Buttons/applyNowButton";
+import { useAuthCheck } from "../../hooks/useAuthCheck";
+import WithAuth from "./withAuth";
 
 const JobCard = ({
   jobTitle,
@@ -16,10 +18,31 @@ const JobCard = ({
   addedOnPlatformDate,
   addedOnSourceDate,
 }: Job) => {
+  const handleJobLinkClick = (e) => {
+    e.preventDefault();
+    console.log("Job Link Clicked");
+  };
+
+  const ApplyButton = (props) => {
+    return (
+      <Button
+        asChild
+        className="self-end  border-solid border-brandMain hover:bg-brandMain hover:text-white bg-gray-100 text-black border-[.7px] w-full"
+        onClick={props.onClick}
+      >
+        <Link aria-disabled href={""}>
+          Apply Now
+        </Link>
+      </Button>
+    );
+  };
+  const onClick = () => {};
+  // const ApplyNowButton = WithAuth(() => <ApplyButton onClick={onClick} />);
+
   return (
-    <a
-      href={`/jobs/${id}`}
-      target="_blank"
+    <div
+      // href={`/jobs/${id}`}
+      // target="_blank"
       className="bg-white min-h-[230px]  hover:bg-slate-200 px-4 py-4 cursor-pointer min-w-[400px] sm:min-w-[200px] rounded-lg border-[1.8px] border-gray-100"
     >
       <div className="flex flex-col justify-between h-full">
@@ -54,7 +77,12 @@ const JobCard = ({
                   // >
                   //   {tech}
                   // </p>
-                  <Pill className={"bg-brandMain text-white"} key={tech}>
+                  <Pill
+                    className={
+                      "border-solid border-[1px] border-brandMain hover:bg-brandMain hover:text-white bg-brandMain text-white  "
+                    }
+                    key={tech}
+                  >
                     {tech}
                   </Pill>
                 ))}
@@ -65,15 +93,10 @@ const JobCard = ({
             {addedOnSourceDate ? addedOnSourceDate : addedOnPlatformDate}
           </div>
         </div>
-        <Button
-          asChild
-          className="self-end  border-solid border-brandMain hover:bg-brandMain hover:text-white bg-gray-100 text-black border-[.7px] w-full"
-        >
-          <Link href={""}>Apply Now</Link>
-        </Button>
+        <ApplyNowButton id={id} />
         {/* <JobLinkButton /> */}
       </div>
-    </a>
+    </div>
   );
 };
 

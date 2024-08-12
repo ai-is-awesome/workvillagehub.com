@@ -18,10 +18,12 @@ const useRequest = (options: Options) => {
       const response = await axios(options);
       const result = await response.data;
       setData(result);
+      return result;
     } catch (error) {
       setError(error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return { data, error, isLoading, fetchData };

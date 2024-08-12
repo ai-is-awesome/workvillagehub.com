@@ -22,7 +22,7 @@ async function scrape() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await page.goto("https://linkedin.com/");
+  await page.goto("https://twitter.com/nitesh_singh5");
   // Set screen size
   await page.setViewport({ width: 1080, height: 1024 });
 

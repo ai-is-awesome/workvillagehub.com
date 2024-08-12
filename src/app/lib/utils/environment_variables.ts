@@ -7,7 +7,7 @@ type variables = {
 
 export function getEnvironmentVariables(): variables {
   const env = process.env.env;
-  console.log("Env is : ", env, process.env.NEXT_PUBLIC_SUPABASE_URL_PROD!);
+
   if (env === "prod") {
     console.log("retuning prod env vars");
     return {
