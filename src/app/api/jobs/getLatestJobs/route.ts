@@ -26,7 +26,7 @@ export async function POST(request: Request, response: Response) {
     take: limit,
     skip: (page - 1) * limit,
     orderBy: {
-      jobPostDate: "desc",
+      jobAddedDate: "desc",
     },
     select: {
       jobDescription: true,
